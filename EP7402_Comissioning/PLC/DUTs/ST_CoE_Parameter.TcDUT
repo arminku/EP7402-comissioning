@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_CoE_Parameter" Id="{2da78be1-29d2-4611-a690-bb0ecb26523d}">
+    <Declaration><![CDATA[TYPE ST_CoE_Parameter :
+STRUCT
+	sSubIndex		: STRING;	// Number of Index:Subindex
+	sDescription	: STRING;	// Description of CoE Parameter
+	nValue			: UDINT;	// Set Value to change CoE Parameter 
+	nReadValue		: UDINT;	// Actual Value of Parameterread from terminal
+	sValueRange		: STRING;	// Description of the range of the parameter 
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

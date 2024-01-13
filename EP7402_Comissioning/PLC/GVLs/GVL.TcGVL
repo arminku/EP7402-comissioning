@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL" Id="{62cfb9a3-0240-4b8e-89b2-3559fbb11fb2}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	cnNumberOfCoeParameter_Motor:USINT:=10;
+	cnNumberOfCoeParameter_Controller:USINT:=15;
+	cnSubIndex_ResetDeliveryStatus: BYTE:=16#1;
+	cnIndex_ResetDeliveryStatus: WORD:=16#1011;
+	cnResetParameter : UDINT:= 1684107116;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

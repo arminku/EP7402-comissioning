@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_EP7402_Scan_Motor" Id="{5e871fc0-8447-4055-9dce-ba80d29d4a42}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EP7402_Scan_Motor
+VAR CONSTANT
+	cnValueChannel_1: UINT:=16#8007;
+	cnValueChannel_2: UINT:=16#8017;
+END_VAR
+VAR_INPUT
+	bExecute:BOOL;
+	sNetId 		: T_AmsNetID;
+	tUpdateInterval:TIME:=T#1S;
+	nSlaveAddr	: UINT;
+	bMotorChannel_1:BOOL:= TRUE;
+END_VAR
+VAR_OUTPUT
+	bBusy:BOOL;
+	nProgress: USINT;
+	aResponse:ARRAY [1..6] OF BYTE;
+	bError:BOOL;
+	nErrId:UDINT;
+END_VAR
+VAR
+	fbWriteCoEParameter	:  FB_EcCoESdoWrite;
+	fbReadCoEParameter	:  FB_EcCoESdoRead;
+	fbReadCoEParameterEx	:  FB_EcCoESdoReadEx;
+	fbRequestProgress:f_trig;
+	nStep:(init, request_command_register, requesting_command_register ,send_request, sending_request, request_progress, requesting_progress, request_error, requesting_error);
+	fbExecuteTrigger:r_trig;
+	nStatus:USINT;
+	aBuffer: array [1..12] of Byte;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbExecuteTrigger(clk:=bExecute);
+IF fbExecuteTrigger.q THEN
+	nStep:=request_command_register;
+	nProgress:=0;
+	memset(ADR(aResponse),0,SIZEOF(aResponse));
+	bBusy:=TRUE;
+END_IF
+
+
+
+CASE nStep OF
+	init:
+		bBusy := FALSE;
+	
+	request_command_register:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			fbReadCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#FB00, 
+				pDstBuf:= ADR(aBuffer), 
+				cbBufLen:= SIZEOF(aBuffer), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE,
+				bError=>bError , 
+				nErrId=> nErrId);
+			nStep:=	requesting_command_register;
+		END_IF
+
+		
+	requesting_command_register:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			IF fbReadCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= send_request;
+			END_IF
+		END_IF
+		
+	send_request:
+		fbWriteCoEParameter(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameter.bBusy THEN
+			fbWriteCoEParameter(
+				sNetId:= sNetId, 
+				nSlaveAddr:=nSlaveAddr , 
+				nSubIndex:= 16#1, 
+				nIndex:= 16#FB00, 
+				pSrcBuf:= SEL(bMotorChannel_1, ADR(cnValueChannel_2), ADR(cnValueChannel_1)), 
+				cbBufLen:= SEL(bMotorChannel_1, SIZEOF(cnValueChannel_2), SIZEOF(cnValueChannel_1)),
+				bExecute:= TRUE ,
+				tTimeout:= ,  
+				bError=>bError , 
+				nErrId=> nErrId);
+			nStep:=	sending_request;
+		END_IF
+
+		
+	sending_request:
+		fbWriteCoEParameter(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameter.bBusy THEN
+			IF fbWriteCoEParameter.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= request_progress;
+			END_IF
+		END_IF
+	
+	request_progress:
+		fbReadCoEParameter(bExecute:=FALSE);
+		IF NOT fbReadCoEParameter.bBusy THEN
+			fbReadCoEParameter(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nSubIndex:= 16#2, 
+				nIndex:= 16#FB00, 
+				pDstBuf:= ADR(nStatus), 
+				cbBufLen:= SIZEOF(nStatus), 
+				bExecute:= TRUE,
+				bError=>bError , 
+				nErrId=> nErrId);
+			nStep:=	requesting_progress;
+		END_IF
+
+		
+	requesting_progress:
+		fbReadCoEParameter(bExecute:=FALSE);
+		IF NOT fbReadCoEParameter.bBusy THEN
+			IF fbReadCoEParameter.bError THEN
+				nStep:= init;
+			ELSE
+				IF nStatus>100 THEN
+					nProgress:=nStatus-100;
+					nStep:= request_progress;
+				ELSIF nStatus=0 THEN
+					nProgress:=100;
+					nStep:= init;
+				ELSE
+					nProgress:=0;
+					nStep:= request_error;					
+				END_IF
+			END_IF
+		END_IF
+		
+	request_error:
+		fbReadCoEParameter(bExecute:=FALSE);
+		IF NOT fbReadCoEParameter.bBusy THEN
+			fbReadCoEParameter(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nSubIndex:= 16#3, 
+				nIndex:= 16#FB00, 
+				pDstBuf:= ADR(aResponse), 
+				cbBufLen:= SIZEOF(aResponse), 
+				bExecute:= TRUE,
+				bError=> bError , 
+				nErrId=> nErrId);
+			nStep:=	requesting_error;
+		END_IF
+
+		
+	requesting_error:
+		fbReadCoEParameter(bExecute:=FALSE);
+		IF NOT fbReadCoEParameter.bBusy THEN
+				nStep:= init;
+		END_IF
+	
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FB_EP7402_Scan_Motor">
+      <LineId Id="120" Count="2" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="123" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="212" Count="0" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="213" Count="7" />
+      <LineId Id="238" Count="1" />
+      <LineId Id="221" Count="10" />
+      <LineId Id="233" Count="1" />
+      <LineId Id="208" Count="1" />
+      <LineId Id="85" Count="2" />
+      <LineId Id="109" Count="8" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="96" Count="12" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="127" Count="5" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="133" Count="2" />
+      <LineId Id="203" Count="1" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="138" Count="9" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="158" Count="2" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="170" Count="9" />
+      <LineId Id="205" Count="1" />
+      <LineId Id="180" Count="7" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="74" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

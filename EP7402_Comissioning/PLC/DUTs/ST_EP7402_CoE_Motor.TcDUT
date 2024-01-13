@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_EP7402_CoE_Motor" Id="{912483da-bc71-4265-bc74-204be86ed61b}">
+    <Declaration><![CDATA[ {attribute 'pack_mode' := '0'}
+ // Represents data struct of COE Index 8020/8030 --> can be determined in esi
+TYPE ST_EP7402_CoE_Motor :
+STRUCT
+	Sub_Index_res_0: ARRAY [1..2] OF BYTE;
+	Sub_Index_001: UINT;
+	Sub_Index_002: UINT;
+	Sub_Index_003: UINT;
+	Sub_Index_004: UINT;
+	Sub_Index_res_1: ARRAY [1..8] OF BYTE;
+	Sub_Index_009: UINT;
+	Sub_Index_res_2: ARRAY [1..8] OF BYTE;	
+	Sub_Index_019: UINT;
+	Sub_Index_020: UINT;
+	Sub_Index_res_3: ARRAY [1..2] OF BYTE;	
+	Sub_Index_022: USINT;
+	Sub_Index_024: USINT;
+	Sub_Index_025: UINT;
+	Sub_Index_res_4: ARRAY [1..2] OF BYTE;	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{8482833e-821d-4e0e-9e44-6b9a93148a24}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	// Variables to link with HW
+	sNetId			AT%I*	: T_AmsNetIdArr;				// link with PDO: EP7402 -->InfoData --> AdsAddr.netId
+	nEP7402Addr		AT%I*	: UINT := 1001;					// link with PDO: EP7402 -->InfoData --> AdsAddr.port
+	stEP7402_PDOs			: MDP5001_100_200_705_F94A9C2E;	// Struct for simple Link with Box: EP7402 --> PLC --> Create PLC Data Type --> disable "Per Channel"
+															// --> Link To PLC.. --> Select Struct this struct
+
+	// Function blocks used for COE access 
+	fbEP7402_ReadCoE 			: FB_EP7402_ReadCoEParameter; 	// Read Coe Settings for Motor Configuration: Index 8020/30 and 8023/33 of a box
+	fbEP7402_WriteCoE 			: FB_EP7402_WriteCoEParameter;	// Write Coe Settings for Motor Configuration: Index 8020/30 and 8023/33 of a box
+	fbEP7402_AutoRequestSteps	: FB_EP7402_AutoRequestSteps;	// Sending Request for single Motor steps. Needed to determine "Mechanical to electrical Ratio"
+	fbEP7402_ScanMotor			: FB_EP7402_Scan_Motor;			// Sending Request to start Motor Scan. Needed to determine controller values.
+	fbResetCoE_Parameter 		: FB_EcCoESdoWrite;				// Reset Box --> reset to delivery status
+	
+	// structs storing CoE-Parameters
+	stLast_EP7402_CoE_Parameter : ST_EP7402_CoE_Parameter;		// Struct with Coe Paramters in last PLC Cycle --> needed for getting changes
+	st_EP7402_CoE_Parameter 	: ST_EP7402_CoE_Parameter;		// Struct containing all current CoE Data (also inputs from HMI)
+	
+	fbCoeWriteFinished			: f_trig;
+	fbReadFinished				: f_trig;
+	bReadCoE					: BOOL;
+	bMotorChannel_1_Selected	: BOOL:=True;
+	nIndex						: UINT;	
+	nResetParameter 			: UDINT;
+	bInit						: BOOL;
+END_VAR
+
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[GetEvents();
+Init();
+
+// Reset Box to delivery state (can be triggered from HMI)
+fbResetCoE_Parameter(	sNetID:=F_CreateAmsNetId(sNetId),
+						nSlaveAddr:=nEP7402Addr, 
+						nSubIndex := gvl.cnSubIndex_ResetDeliveryStatus, 
+						nIndex := gvl.cnIndex_ResetDeliveryStatus,	
+						pSrcBuf := ADR(gvl.cnResetParameter),
+						cbBufLen := SIZEOF(gvl.cnResetParameter),
+						bExecute := fbResetCoE_Parameter.bExecute
+						);
+
+// special configuration functions requested via CoE (can be triggered from HMI)
+	//Request single Motor Steps
+	fbEP7402_AutoRequestSteps(bEnable:=fbEP7402_AutoRequestSteps.bEnable, bMotorChannel_1:=bMotorChannel_1_Selected,sNetID:=F_CreateAmsNetId(sNetId),nSlaveAddr:=nEP7402Addr);
+	//Request Motor Scan
+	fbEP7402_ScanMotor(bExecute:=fbEP7402_ScanMotor.bExecute, bMotorChannel_1:=bMotorChannel_1_Selected,sNetID:=F_CreateAmsNetId(sNetId),nSlaveAddr:=nEP7402Addr);
+
+]]></ST>
+    </Implementation>
+    <Action Name="GetEvents" Id="{6be3525e-6981-421f-8406-0188caa0b311}">
+      <Implementation>
+        <ST><![CDATA[
+
+// A Coe Write has finished --> Read is necessary
+fbCoeWriteFinished(clk:=fbEP7402_WriteCoE.bBusy OR fbResetCoE_Parameter.bBusy OR fbEP7402_ScanMotor.bBusy);
+
+// Read in CoE Parameters of Box
+fbEP7402_ReadCoE(bExecute:=fbCoeWriteFinished.q OR fbEP7402_ReadCoE.bExecute AND NOT fbEP7402_WriteCoE.bBusy , stEP7402_CoE_Parameter  :=st_EP7402_CoE_Parameter);
+// A Coe Read is finished
+fbReadFinished(clk:=fbEP7402_ReadCoE.bBusy );
+IF fbReadFinished.Q THEN
+	fbEP7402_ReadCoE.bExecute:=false;
+	initCoEValues();
+END_IF
+
+// Write Coe Parameters if set parameters have been changed (HMI)
+fbEP7402_WriteCoE(bExecute:=FALSE, stEP7402_CoE_Parameter  :=st_EP7402_CoE_Parameter);
+IF memcmp(ADR(stLast_EP7402_CoE_Parameter),ADR(st_EP7402_CoE_Parameter),SIZEOF(st_EP7402_CoE_Parameter))<>0 AND NOT fbEP7402_ReadCoE.bBusy THEN 
+	fbEP7402_WriteCoE(bExecute:=TRUE, sNetID:=F_CreateAmsNetId(sNetId),nSlaveAddr:=nEP7402Addr, stEP7402_CoE_Parameter  :=st_EP7402_CoE_Parameter);
+	stLast_EP7402_CoE_Parameter:=st_EP7402_CoE_Parameter;
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="Init" Id="{9ccffe93-9f66-4f25-b8a5-de223ada6985}">
+      <Implementation>
+        <ST><![CDATA[IF NOT bInit THEN
+	fbEP7402_ReadCoE(bExecute:=NOT fbEP7402_ReadCoE.bBusy,sNetID:=F_CreateAmsNetId(sNetId),nSlaveAddr:=nEP7402Addr, stEP7402_CoE_Parameter  :=st_EP7402_CoE_Parameter);
+	IF NOT fbEP7402_ReadCoE.bBusy THEN
+		bInit:=TRUE;
+		initCoEValues();
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="InitCoEValues" Id="{991f245b-8107-439f-99ae-665937df6882}">
+      <Implementation>
+        <ST><![CDATA[FOR nIndex:= 1 TO gvl.cnNumberOfCoeParameter_Motor DO
+	st_EP7402_CoE_Parameter.astCoE_Parameter_Motor[1][nIndex].nValue:=st_EP7402_CoE_Parameter.astCoE_Parameter_Motor[1][nIndex].nReadValue;
+	st_EP7402_CoE_Parameter.astCoE_Parameter_Motor[2][nIndex].nValue:=st_EP7402_CoE_Parameter.astCoE_Parameter_Motor[2][nIndex].nReadValue;
+END_FOR
+FOR nIndex:= 1 TO gvl.cnNumberOfCoeParameter_Controller DO
+	st_EP7402_CoE_Parameter.astCoE_Parameter_Controller[1][nIndex].nValue:=st_EP7402_CoE_Parameter.astCoE_Parameter_Controller[1][nIndex].nReadValue;
+	st_EP7402_CoE_Parameter.astCoE_Parameter_Controller[2][nIndex].nValue:=st_EP7402_CoE_Parameter.astCoE_Parameter_Controller[2][nIndex].nReadValue;
+END_FOR
+stLast_EP7402_CoE_Parameter:=st_EP7402_CoE_Parameter;]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="MAIN">
+      <LineId Id="2568" Count="0" />
+      <LineId Id="2704" Count="0" />
+      <LineId Id="2667" Count="0" />
+      <LineId Id="2698" Count="0" />
+      <LineId Id="2691" Count="6" />
+      <LineId Id="2689" Count="0" />
+      <LineId Id="2687" Count="0" />
+      <LineId Id="2305" Count="0" />
+      <LineId Id="2688" Count="0" />
+      <LineId Id="2303" Count="0" />
+      <LineId Id="2700" Count="0" />
+      <LineId Id="2583" Count="0" />
+      <LineId Id="2615" Count="0" />
+      <LineId Id="2301" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.GetEvents">
+      <LineId Id="24" Count="0" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="27" Count="2" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="16" Count="4" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.Init">
+      <LineId Id="2" Count="5" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.InitCoEValues">
+      <LineId Id="1" Count="0" />
+      <LineId Id="5" Count="1" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

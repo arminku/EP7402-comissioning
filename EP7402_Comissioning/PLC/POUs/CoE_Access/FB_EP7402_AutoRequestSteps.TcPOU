@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_EP7402_AutoRequestSteps" Id="{7a6b4372-7983-4cfc-abb4-3f090e3ff2e0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EP7402_AutoRequestSteps
+VAR CONSTANT
+	cnValueChannel_1: UINT:=16#800A;
+	cnValueChannel_2: UINT:=16#801A;
+END_VAR
+VAR_INPUT
+	bEnable:BOOL;
+	tRequestCycleTime:TIME:= T#250mS;
+	sNetId 		: T_AmsNetID;
+	nSlaveAddr	: UINT;
+	bMotorChannel_1:BOOL:= TRUE;
+END_VAR
+VAR_OUTPUT
+	bBusy:BOOL;
+	bError:BOOL;
+	nErrId:UDINT;
+	aResponse:ARRAY [1..6] OF BYTE;
+	nMotorStep_Count :UINT;
+END_VAR
+VAR
+	fbTimer:TON;
+	fbWriteCoEParameter	:  FB_EcCoESdoWrite;
+	fbReadCoEParameter	:  FB_EcCoESdoRead;
+	fbReadCoEParameterEx	:  FB_EcCoESdoReadEx;
+	fbRequestProgress	: f_trig;
+	nStep:(init, request_command_register, requesting_command_register ,send_request, sending_request, request_progress, requesting_progress, request_error, requesting_error);
+	fbExecuteTrigger:r_trig;
+	nStatus:USINT;
+	aBuffer: array [1..12] of Byte;
+	fb_f_EnableTrig: f_trig;
+	fb_r_EnableTrig: r_trig;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbTimer(in:= bEnable AND NOT fbTimer.Q, pt:=tRequestCycleTime);
+
+fb_r_EnableTrig(clk:=bEnable);
+fb_f_EnableTrig(clk:=bEnable);
+IF fb_f_EnableTrig.q THEN
+	nStep:=init;
+END_IF
+
+
+CASE nStep OF
+	init:
+		bBusy := FALSE;
+		IF fb_r_EnableTrig.q THEN
+			nMotorStep_Count:=0;
+			memset(ADR(aResponse),0,SIZEOF(aResponse));
+			nStep:=request_command_register;
+		END_IF
+	
+	request_command_register: // Request seems to be necessesary 
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			fbReadCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#FB00, 
+				pDstBuf:= ADR(aBuffer), 
+				cbBufLen:= SIZEOF(aBuffer), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE,
+				bError=>bError , 
+				nErrId=> nErrId);
+			nStep:=	requesting_command_register;
+		END_IF
+
+		
+	requesting_command_register:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			IF fbReadCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= send_request;
+			END_IF
+		END_IF
+		
+	send_request:
+		fbWriteCoEParameter(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameter.bBusy AND fbTimer.q THEN
+			fbWriteCoEParameter(
+				sNetId:= sNetId, 
+				nSlaveAddr:=nSlaveAddr , 
+				nSubIndex:= 16#1, 
+				nIndex:= 16#FB00, 
+				pSrcBuf:= SEL(bMotorChannel_1, ADR(cnValueChannel_2), ADR(cnValueChannel_1)), 
+				cbBufLen:= SEL(bMotorChannel_1, SIZEOF(cnValueChannel_2), SIZEOF(cnValueChannel_1)),
+				bExecute:= TRUE ,
+				tTimeout:= ,  
+				bError=>bError , 
+				nErrId=> nErrId);
+			nStep:=	sending_request;
+		END_IF
+
+		
+	sending_request:
+		fbWriteCoEParameter(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameter.bBusy THEN
+			IF fbWriteCoEParameter.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= request_progress;
+			END_IF
+		END_IF
+	
+	request_progress:
+		fbReadCoEParameter(bExecute:=FALSE);
+		IF NOT fbReadCoEParameter.bBusy THEN
+			fbReadCoEParameter(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nSubIndex:= 16#2, 
+				nIndex:= 16#FB00, 
+				pDstBuf:= ADR(nStatus), 
+				cbBufLen:= SIZEOF(nStatus), 
+				bExecute:= TRUE,
+				bError=>bError , 
+				nErrId=> nErrId);
+			nStep:=	requesting_progress;
+		END_IF
+
+		
+	requesting_progress:
+		fbReadCoEParameter(bExecute:=FALSE);
+		IF NOT fbReadCoEParameter.bBusy THEN
+			IF fbReadCoEParameter.bError THEN
+				nStep:= init;
+			ELSE
+				IF nStatus=0 THEN
+					nStep:= request_command_register;
+					nMotorStep_Count:=nMotorStep_Count+1;
+				ELSIF nStatus<>0 THEN
+					nStep:= request_error;					
+				END_IF
+			END_IF
+		END_IF
+		
+	request_error:
+		fbReadCoEParameter(bExecute:=FALSE);
+		IF NOT fbReadCoEParameter.bBusy THEN
+			fbReadCoEParameter(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nSubIndex:= 16#3, 
+				nIndex:= 16#FB00, 
+				pDstBuf:= ADR(aResponse), 
+				cbBufLen:= SIZEOF(aResponse), 
+				bExecute:= TRUE,
+				bError=> bError , 
+				nErrId=> nErrId);
+			nStep:=	requesting_error;
+		END_IF
+
+		
+	requesting_error:
+		fbReadCoEParameter(bExecute:=FALSE);
+		IF NOT fbReadCoEParameter.bBusy THEN
+				nStep:= init;
+		END_IF
+	
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FB_EP7402_AutoRequestSteps">
+      <LineId Id="351" Count="0" />
+      <LineId Id="434" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="435" Count="0" />
+      <LineId Id="203" Count="1" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="350" Count="0" />
+      <LineId Id="211" Count="3" />
+      <LineId Id="356" Count="0" />
+      <LineId Id="395" Count="0" />
+      <LineId Id="397" Count="0" />
+      <LineId Id="357" Count="1" />
+      <LineId Id="215" Count="79" />
+      <LineId Id="296" Count="0" />
+      <LineId Id="398" Count="0" />
+      <LineId Id="297" Count="0" />
+      <LineId Id="302" Count="27" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

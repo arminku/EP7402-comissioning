@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_EP7402_CoE_Controller" Id="{07702c7f-a700-4879-b29d-c55b5bd9744e}">
+    <Declaration><![CDATA[ {attribute 'pack_mode' := '0'}
+ // Represents data struct of COE Index 8023/8033 --> can be determined in esi
+TYPE ST_EP7402_CoE_Controller :
+STRUCT
+	Bit_Reserved_001 :BIT;
+	Bit_Reserved_002 :BIT;
+	Bit_Reserved_003 :BIT;
+	Bit_Reserved_004 :BIT;
+	Bit_Reserved_005 :BIT;
+	Bit_Reserved_006 :BIT;
+	Bit_Reserved_007 :BIT;
+	Bit_Reserved_008 :BIT;
+	Bit_Reserved_009 :BIT;
+	Bit_Reserved_010 :BIT;
+	Bit_Reserved_011 :BIT;
+	Bit_Reserved_012 :BIT;
+	Bit_Reserved_013 :BIT;
+	Bit_Reserved_014 :BIT;
+	Bit_Reserved_015 :BIT;
+	Bit_Reserved_016 :BIT;
+	Bit_Reserved_017 :BIT;
+	Sub_Index_002: BIT;
+	Sub_Index_003: BIT;
+	Sub_Index_004: BIT;
+	Bit_Reserved_021 :BIT;
+	Bit_Reserved_022 :BIT;
+	Bit_Reserved_023 :BIT;
+	Bit_Reserved_024 :BIT;
+	Bit_Reserved_025 :BIT;
+	Bit_Reserved_026 :BIT;
+	Bit_Reserved_027 :BIT;
+	Bit_Reserved_028 :BIT;
+	Bit_Reserved_029 :BIT;
+	Bit_Reserved_030 :BIT;
+	Bit_Reserved_031 :BIT;
+	Bit_Reserved_032 :BIT;
+	Sub_Index_017: UDINT;
+	Sub_Index_018: UDINT;
+	Sub_Index_019: USINT;
+	Sub_Index_020: SINT;
+	Sub_Index_021: UINT;
+	Byte_Reserved_001 :ARRAY[1..2] OF BYTE;
+	Sub_Index_024: UINT;
+	Sub_Index_025: UINT;
+	Sub_Index_033: UINT;
+	Sub_Index_034: UINT;
+	Sub_Index_035: UINT;
+	Sub_Index_036: UINT;
+	Sub_Index_037: UINT;
+	Sub_Index_038: UINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

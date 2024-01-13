@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_EP7402_ReadCoEParameter" Id="{079273e5-e61b-4719-9166-6c6a7fd58f50}" SpecialFunc="None">
+    <Declaration><![CDATA[
+FUNCTION_BLOCK FB_EP7402_ReadCoEParameter
+VAR_IN_OUT 
+	stEP7402_CoE_Parameter	: ST_EP7402_CoE_Parameter;		
+END_VAR
+VAR_INPUT
+	bExecute	: BOOL;
+	sNetId 		: T_AmsNetID;
+	nSlaveAddr	: UINT;
+END_VAR
+VAR_OUTPUT
+	bBusy:BOOL;
+	bError:BOOL;
+	nErrId:UDINT;
+END_VAR
+VAR
+	fbReadCoEParameterEx				:  FB_EcCoESdoReadEx;
+	nParameter							:  UINT;
+	nStep								: (init, StartRead_MotorParameter_1, Reading_MotorParameter_1, StartRead_ControllerParameter_1, Reading_ControllerParameter_1, StartRead_SynchronInfoData_1, Reading_SynchronInfoData_1,
+											StartRead_MotorParameter_2, Reading_MotorParameter_2, StartRead_ControllerParameter_2, Reading_ControllerParameter_2, StartRead_SynchronInfoData_2, Reading_SynchronInfoData_2);
+	stCoe_Read_Motor					: ST_EP7402_CoE_Motor;
+	stCoe_Read_Controller				: ST_EP7402_CoE_Controller;
+	stCoe_Read_SynchronInfoData			: ST_EP7402_CoE_SynchronInfoData;
+	fbExecuteTrigger				 	: r_trig;
+	nIndex: uint;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbExecuteTrigger(clk:=bExecute);
+IF fbExecuteTrigger.q THEN
+	nStep:=StartRead_MotorParameter_1;
+	bBusy:=TRUE;
+END_IF
+
+CASE nStep OF
+	init:
+		bBusy := FALSE;
+		bError:=fbReadCoEParameterEx.bError;
+		nErrId:=fbReadCoEParameterEx.nErrId;
+	
+	StartRead_MotorParameter_1:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			fbReadCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8020, 
+				pDstBuf:= ADR(stCoe_Read_Motor), 
+				cbBufLen:= SIZEOF(stCoe_Read_Motor), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Reading_MotorParameter_1;
+		END_IF
+
+		
+	Reading_MotorParameter_1:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			IF fbReadCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				TransferBufferDataToStruct_Motor(nChannel:=1);
+				nStep:= StartRead_ControllerParameter_1;
+			END_IF
+		END_IF
+	
+	StartRead_ControllerParameter_1:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			fbReadCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8023, 
+				pDstBuf:= ADR(stCoe_Read_Controller), 
+				cbBufLen:= SIZEOF(stCoe_Read_Controller), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Reading_ControllerParameter_1;
+		END_IF
+		
+	Reading_ControllerParameter_1:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			IF fbReadCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				TransferBufferDataToStruct_Controller(nChannel:=1);
+				nStep:= StartRead_SynchronInfoData_1;
+			END_IF
+		END_IF
+		
+	StartRead_SynchronInfoData_1:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+			IF NOT fbReadCoEParameterEx.bBusy THEN
+				fbReadCoEParameterEx(
+					sNetId:= sNetId, 
+					nSlaveAddr:= nSlaveAddr, 
+					nIndex:= 16#8022, 
+					pDstBuf:= ADR(stCoe_Read_SynchronInfoData), 
+					cbBufLen:= SIZEOF(stCoe_Read_SynchronInfoData), 
+					bExecute:= TRUE,
+					bCompleteAccess:= TRUE);
+				nStep:=	Reading_SynchronInfoData_1;
+			END_IF
+	
+	Reading_SynchronInfoData_1:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+			IF NOT fbReadCoEParameterEx.bBusy THEN
+				IF fbReadCoEParameterEx.bError THEN
+					nStep:= init;
+				ELSE
+					TransferBufferDataToStruct_SynchronInfoData(nChannel:=1);
+					nStep:= StartRead_MotorParameter_2;
+				END_IF
+			END_IF
+		
+	StartRead_MotorParameter_2:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			fbReadCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8030, 
+				pDstBuf:= ADR(stCoe_Read_Motor), 
+				cbBufLen:= SIZEOF(stCoe_Read_Motor), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Reading_MotorParameter_2;
+		END_IF
+
+		
+	Reading_MotorParameter_2:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			IF fbReadCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				TransferBufferDataToStruct_Motor(nChannel:=2);
+				nStep:= StartRead_ControllerParameter_2;
+			END_IF
+		END_IF
+	
+	StartRead_ControllerParameter_2:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			fbReadCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8033, 
+				pDstBuf:= ADR(stCoe_Read_Controller), 
+				cbBufLen:= SIZEOF(stCoe_Read_Controller), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Reading_ControllerParameter_2;
+		END_IF
+		
+	Reading_ControllerParameter_2:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			IF fbReadCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE 
+				TransferBufferDataToStruct_Controller(nChannel:=2);
+				nStep:= StartRead_SynchronInfoData_2;
+			END_IF
+		END_IF
+		
+	StartRead_SynchronInfoData_2:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			fbReadCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8032, 
+				pDstBuf:= ADR(stCoe_Read_SynchronInfoData), 
+				cbBufLen:= SIZEOF(stCoe_Read_SynchronInfoData), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Reading_SynchronInfoData_2;
+		END_IF
+		
+	Reading_SynchronInfoData_2:
+		fbReadCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbReadCoEParameterEx.bBusy THEN
+			IF NOT fbReadCoEParameterEx.bError THEN
+				TransferBufferDataToStruct_SynchronInfoData(nChannel:=2);
+			END_IF
+			nStep:= init;
+		END_IF
+		
+END_CASE]]></ST>
+    </Implementation>
+    <Method Name="TransferBufferDataToStruct_Controller" Id="{0fa8f3e7-a1e2-47ad-b915-caaf96646771}">
+      <Declaration><![CDATA[METHOD TransferBufferDataToStruct_Controller
+VAR_INPUT
+	nChannel:USINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// The warning can be disabled here as the user is aware of the risk that the reference may not be valid by checking its validity
+{warning disable C0371}
+
+IF nChannel=1 OR nChannel=2  AND __ISVALIDREF(stEP7402_CoE_Parameter)THEN
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Disable_Motor_Diagnosis].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_003);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Disable_I2T_Current_Limiting].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_004);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Velocity_Loop_Integral_Time].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_017);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Velocity_Loop_Proportional_Gain].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_018);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Velocity_Feed_Forward_Gain].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_019);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Sensorless_Offset_Scaling].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_020);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Align_Duration].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_021);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Rampup_Duration].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_024);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Rampup_Velocity].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_025);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Rampup_Needed_Switchover_Events].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_033);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Commutation_Threshold].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_034);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Current_Loop_Proportional_Gain].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_035);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Current_Loop_Integral_Time].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_036);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Restart_After_Error_Number_Of_Repetition].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_037);
+	stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Restart_After_Error_Delay].nReadValue:=TO_UDINT(stCoe_Read_Controller.Sub_Index_038);
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TransferBufferDataToStruct_Motor" Id="{9c083f31-fb70-48dd-b53d-e79dcdac0cae}">
+      <Declaration><![CDATA[METHOD TransferBufferDataToStruct_Motor
+VAR_INPUT
+	nChannel:USINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// The warning can be disabled here as the user is aware of the risk that the reference may not be valid by checking its validity
+{warning disable C0371}
+
+IF nChannel=1 OR nChannel=2 and __ISVALIDREF(stEP7402_CoE_Parameter) THEN
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Peak_Current].nReadValue:=stCoe_Read_Motor.Sub_Index_001;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Rated_Current].nReadValue:=stCoe_Read_Motor.Sub_Index_002;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Rated_Voltage].nReadValue:=stCoe_Read_Motor.Sub_Index_003;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Phase_To_Phase_Resistance].nReadValue:=stCoe_Read_Motor.Sub_Index_004;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Start_Velocity].nReadValue:=stCoe_Read_Motor.Sub_Index_009;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Mechanical_To_Electrical_Ratio].nReadValue:=stCoe_Read_Motor.Sub_Index_019;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Rated_Velocity].nReadValue:=stCoe_Read_Motor.Sub_Index_020;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.I2T_Warn_Level].nReadValue:=stCoe_Read_Motor.Sub_Index_022;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.I2T_Error_Level].nReadValue:=stCoe_Read_Motor.Sub_Index_024;
+	stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Motor_Thermal_Time_Constant].nReadValue:=stCoe_Read_Motor.Sub_Index_025;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TransferBufferDataToStruct_SynchronInfoData" Id="{a0cafeb2-54b0-4c3c-92d1-791094dfc138}">
+      <Declaration><![CDATA[METHOD TransferBufferDataToStruct_SynchronInfoData
+VAR_INPUT
+	nChannel:USINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// The warning can be disabled here as the user is aware of the risk that the reference may not be valid by checking its validity
+{warning disable C0371}
+
+IF nChannel=1 OR nChannel=2 and __ISVALIDREF(stEP7402_CoE_Parameter) THEN
+	stEP7402_CoE_Parameter.astCoE_Parameter_SynchronInfoData[nChannel][1]:=stCoe_Read_SynchronInfoData.nInfoData1;
+	stEP7402_CoE_Parameter.astCoE_Parameter_SynchronInfoData[nChannel][2]:=stCoe_Read_SynchronInfoData.nInfoData2;
+	stEP7402_CoE_Parameter.astCoE_Parameter_SynchronInfoData[nChannel][3]:=stCoe_Read_SynchronInfoData.nInfoData3;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_EP7402_ReadCoEParameter">
+      <LineId Id="408" Count="32" />
+      <LineId Id="533" Count="0" />
+      <LineId Id="441" Count="0" />
+      <LineId Id="445" Count="22" />
+      <LineId Id="534" Count="0" />
+      <LineId Id="468" Count="0" />
+      <LineId Id="472" Count="1" />
+      <LineId Id="561" Count="0" />
+      <LineId Id="626" Count="11" />
+      <LineId Id="565" Count="0" />
+      <LineId Id="564" Count="0" />
+      <LineId Id="563" Count="0" />
+      <LineId Id="578" Count="8" />
+      <LineId Id="474" Count="1" />
+      <LineId Id="477" Count="19" />
+      <LineId Id="535" Count="0" />
+      <LineId Id="497" Count="0" />
+      <LineId Id="501" Count="19" />
+      <LineId Id="663" Count="0" />
+      <LineId Id="521" Count="1" />
+      <LineId Id="531" Count="0" />
+      <LineId Id="664" Count="0" />
+      <LineId Id="526" Count="1" />
+      <LineId Id="665" Count="0" />
+      <LineId Id="667" Count="11" />
+      <LineId Id="666" Count="0" />
+      <LineId Id="638" Count="0" />
+      <LineId Id="640" Count="2" />
+      <LineId Id="681" Count="2" />
+      <LineId Id="644" Count="0" />
+      <LineId Id="649" Count="0" />
+      <LineId Id="528" Count="0" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EP7402_ReadCoEParameter.TransferBufferDataToStruct_Controller">
+      <LineId Id="85" Count="1" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="58" Count="7" />
+      <LineId Id="71" Count="5" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="35" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EP7402_ReadCoEParameter.TransferBufferDataToStruct_Motor">
+      <LineId Id="66" Count="1" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="53" Count="7" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="48" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_EP7402_ReadCoEParameter.TransferBufferDataToStruct_SynchronInfoData">
+      <LineId Id="66" Count="1" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="48" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

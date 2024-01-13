@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_EP7402_CoE_Parameter" Id="{fd9c4bd8-5fe0-48ec-a9da-d46c550f72d6}">
+    <Declaration><![CDATA[TYPE ST_EP7402_CoE_Parameter :
+STRUCT
+	astCoE_Parameter_Motor				: ARRAY[1..2] OF ARRAY [1..gvl.cnNumberOfCoeParameter_Motor] OF ST_CoE_Parameter :=
+	[[
+		(sSubIndex:='8020:01',	sDescription:='Peak current[mA]'					,nValue:=0,nReadValue:=0, sValueRange:='<5000'),
+		(sSubIndex:='8020:02',	sDescription:='Rated current[mA]'					,nValue:=0,nReadValue:=0, sValueRange:='<3500'),
+		(sSubIndex:='8020:03',	sDescription:='Rated Voltage [0.01 V]'				,nValue:=0,nReadValue:=0, sValueRange:='<2400'),
+		(sSubIndex:='8020:04',	sDescription:='Phase to phase resistance [0.01 Ω]'	,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8020:09',	sDescription:='Start velocity [°/s]'				,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8020:13',	sDescription:='Mechanical to electrical ratio'		,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8020:14',	sDescription:='Rated velocity [°/s]'				,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8020:16',	sDescription:='I2T warn level [%]'					,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8020:18',	sDescription:='I2T error level [%]'					,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8020:19',	sDescription:='Motor thermal time constant [0.1s]'	,nValue:=0,nReadValue:=0, sValueRange:='-')
+	],
+	[
+		(sSubIndex:='8030:01',	sDescription:='Peak current[mA]'					,nValue:=0,nReadValue:=0, sValueRange:='<5000'),
+		(sSubIndex:='8030:02',	sDescription:='Rated current[mA]'					,nValue:=0,nReadValue:=0, sValueRange:='<3500'),
+		(sSubIndex:='8030:03',	sDescription:='Rated Voltage [0.01 V]'				,nValue:=0,nReadValue:=0, sValueRange:='<2400'),
+		(sSubIndex:='8030:04',	sDescription:='Phase to phase resistance [0.01 Ω]'	,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8030:09',	sDescription:='Start velocity [°/s]'				,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8030:13',	sDescription:='Mechanical to electrical ratio'		,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8030:14',	sDescription:='Rated velocity [°/s]'				,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8030:16',	sDescription:='I2T warn level [%]'					,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8030:18',	sDescription:='I2T error level [%]'					,nValue:=0,nReadValue:=0, sValueRange:='-'),
+		(sSubIndex:='8030:19',	sDescription:='Motor thermal time constant [0.1s]'	,nValue:=0,nReadValue:=0, sValueRange:='-')
+	]];
+	
+	astCoE_Parameter_Controller			: ARRAY[1..2] OF ARRAY [1..gvl.cnNumberOfCoeParameter_Controller] OF ST_CoE_Parameter :=
+		[[
+			(sSubIndex:='8023:03',	sDescription:='Disable motor diagnosis'						,nValue:=0,nReadValue:=0, sValueRange:='0/1'),
+			(sSubIndex:='8023:04',	sDescription:='Disable I2T current limiting'				,nValue:=0,nReadValue:=0, sValueRange:='0/1'),
+			(sSubIndex:='8023:11',	sDescription:='Velocity loop integral time [0.1ms]'			,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:12',	sDescription:='Velocity loop proportional gain [uV/(°/s)]'	,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:13',	sDescription:='Velocity feed forward'						,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:14',	sDescription:='Sensorless offset scaling {%]'				,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:15',	sDescription:='Align duration [ms]'							,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:18',	sDescription:='Rampup duration [ms]'						,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:19',	sDescription:='Rampup velocity [°/s]'						,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:21',	sDescription:='Rampup needed switchover events'				,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:22',	sDescription:='Commutation Threshold'						,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:23',	sDescription:='Current loop proportional gain [0.1V/A]'		,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:24',	sDescription:='Current Loop integral time [0.1ms]'			,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:25',	sDescription:='Restart after error number of repetition'	,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8023:26',	sDescription:='Restart after error delay [ms]'					,nValue:=0,nReadValue:=0, sValueRange:='-')
+		],
+		[
+			(sSubIndex:='8033:03',	sDescription:='Disable motor diagnosis'						,nValue:=0,nReadValue:=0, sValueRange:='0/1'),
+			(sSubIndex:='8033:04',	sDescription:='Disable I2T current limiting'				,nValue:=0,nReadValue:=0, sValueRange:='0/1'),
+			(sSubIndex:='8033:11',	sDescription:='Velocity loop integral time [0.1ms]'			,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:12',	sDescription:='Velocity loop proportional gain [uV/(°/s)]'	,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:13',	sDescription:='Velocity feed forward'						,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:14',	sDescription:='Sensorless offset scaling {%]'				,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:15',	sDescription:='Align duration [ms]'							,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:18',	sDescription:='Rampup duration [ms]'						,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:19',	sDescription:='Rampup velocity [°/s]'						,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:21',	sDescription:='Rampup needed switchover events'				,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:22',	sDescription:='Commutation Threshold'						,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:23',	sDescription:='Current loop proportional gain [0.1V/A]'		,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:24',	sDescription:='Current Loop integral time [0.1ms]'		   	,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:25',	sDescription:='Restart after error number of repetition'	,nValue:=0,nReadValue:=0, sValueRange:='-'),
+            (sSubIndex:='8033:26',	sDescription:='Restart after error delay [ms]'				,nValue:=0,nReadValue:=0, sValueRange:='-')
+		]];
+		astCoE_Parameter_SynchronInfoData	: ARRAY [1..2] OF ARRAY [1..3] OF E_SynchronInfoData;
+END_STRUCT 
+END_TYPE   ]]></Declaration>
+  </DUT>
+</TcPlcObject>

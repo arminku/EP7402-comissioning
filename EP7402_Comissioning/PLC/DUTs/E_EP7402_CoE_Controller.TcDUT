@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_EP7402_CoE_Controller" Id="{755f8819-07f6-4d2f-9ee7-d3496a3f990f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_EP7402_CoE_Controller :
+(
+	Disable_Motor_Diagnosis:=1,
+	Disable_I2T_Current_Limiting:=2,
+	Velocity_Loop_Integral_Time:=3,
+	Velocity_Loop_Proportional_Gain:=4,
+	Velocity_Feed_Forward_Gain:=5,
+	Sensorless_Offset_Scaling:=6,
+	Align_Duration:=7,
+	Rampup_Duration:=8,
+	Rampup_Velocity:=9,	
+	Rampup_Needed_Switchover_Events:=10,
+	Commutation_Threshold:=11,
+	Current_Loop_Proportional_Gain:=12,
+	Current_Loop_Integral_Time:=13,
+	Restart_After_Error_Number_Of_Repetition:=14,
+	Restart_After_Error_Delay:=15
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

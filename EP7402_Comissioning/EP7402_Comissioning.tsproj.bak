@@ -1,0 +1,1021 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.54">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d</Printf>
+				<Parameter>[0]</Parameter>
+				<Parameter>[1]</Parameter>
+				<Parameter>[2]</Parameter>
+				<Parameter>[3]</Parameter>
+				<Parameter>[4]</Parameter>
+				<Parameter>[5]</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
+			<Name GUID="{3BD42FCA-85FC-C899-2F71-A9346CD54EAB}" Namespace="Tc2_System" AutoDeleteType="true">T_AmsNetIdArr</Name>
+			<Comment><![CDATA[ TwinCAT AMS netID address bytes. ]]></Comment>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</BaseType>
+		</DataType>
+		<DataType>
+			<Name GUID="{CEBA4149-15F0-98B3-0A72-A9E1780F1556}" AutoDeleteType="true" ForceIecDecl="true">Status_E1B529CA_Plc</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>Ready_to_enable</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Ready</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Moving_positive</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Moving_negative</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TxPDO_Toggle</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>15</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{193DE1F8-B782-20C4-F510-3431355CCFED}" AutoDeleteType="true" ForceIecDecl="true">Device_Diag_E5021AB5_Plc</Name>
+			<BitSize>32</BitSize>
+			<SubItem>
+				<Name>Device_undervoltage</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Device_overvoltage</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Overtemperature_warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Overtemperature_error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>General_hardware_error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_1_openload</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_1_short_circuit</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>9</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_1_motor_overload_I2T_warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>10</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_1_motor_overload_I2T_error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>11</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_1_amplifier_overload_I2T_warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>12</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_1_amplifier_overload_I2T_error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>13</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_1_in_limit</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>14</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_1_commutation_error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>15</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_2_openload</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>20</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_2_short_circuit</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>21</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_2_motor_overload_I2T_warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>22</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_2_motor_overload_I2T_error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>23</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_2_amplifier_overload_I2T_warning</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_2_amplifier_overload_I2T_error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>25</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_2_in_limit</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>26</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Channel_2_commutation_error</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>27</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{F9EBD08A-60C7-5D87-30AB-0481508722DC}" AutoDeleteType="true" ForceIecDecl="true">MDP5001_100_200_705_I_F94A9C2E</Name>
+			<BitSize>192</BitSize>
+			<SubItem>
+				<Name>MDP5001_100_DI_Inputs_Input_1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_100_DI_Inputs_Input_2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_100_DI_Inputs_Input_3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_100_DI_Inputs_Input_4</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_100_DI_Inputs_Control_input_1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_100_DI_Inputs_Control_input_2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_100_DI_Inputs_Control_input_3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>6</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_100_DI_Inputs_Control_input_4</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Status_Channel_1_Status</Name>
+				<Type GUID="{CEBA4149-15F0-98B3-0A72-A9E1780F1556}">Status_E1B529CA_Plc</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Synchron_info_data_Channel_1_Info_data_1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Synchron_info_data_Channel_1_Info_data_2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Synchron_info_data_Channel_1_Info_data_3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Status_Channel_2_Status</Name>
+				<Type GUID="{CEBA4149-15F0-98B3-0A72-A9E1780F1556}">Status_E1B529CA_Plc</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Synchron_info_data_Channel_2_Info_data_1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Synchron_info_data_Channel_2_Info_data_2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>112</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Synchron_info_data_Channel_2_Info_data_3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_100_200_705_STM_Inputs_Device_Device_Diag</Name>
+				<Type GUID="{193DE1F8-B782-20C4-F510-3431355CCFED}">Device_Diag_E5021AB5_Plc</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>160</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{38A3B879-2BD9-B97B-5CFB-C45E1813C52E}" AutoDeleteType="true" ForceIecDecl="true">Control_F1D97BE5_Plc</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>Enable</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Reset</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Invert_direction</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Brake_output</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>11</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{F9EBD08B-60C7-5D87-30AB-0481508722DC}" AutoDeleteType="true" ForceIecDecl="true">MDP5001_100_200_705_O_F94A9C2E</Name>
+			<BitSize>160</BitSize>
+			<SubItem>
+				<Name>MDP5001_200_DO_Outputs_Output_1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_200_DO_Outputs_Output_2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_200_DO_Outputs_Output_3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_200_DO_Outputs_Output_4</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_200_DO_Outputs_Control_output_1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_200_DO_Outputs_Control_output_2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_200_DO_Outputs_Control_output_3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>6</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_200_DO_Outputs_Control_output_4</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Control_Channel_1_Control</Name>
+				<Type GUID="{38A3B879-2BD9-B97B-5CFB-C45E1813C52E}">Control_F1D97BE5_Plc</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Target_Velocity_Channel_1_Velocity</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Target_Velocity_Channel_1_Accelleration</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Target_Velocity_Channel_1_Decceleration</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Control_Channel_2_Control</Name>
+				<Type GUID="{38A3B879-2BD9-B97B-5CFB-C45E1813C52E}">Control_F1D97BE5_Plc</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Target_Velocity_Channel_2_Velocity</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000006}">INT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Target_Velocity_Channel_2_Accelleration</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>112</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MDP5001_705_STM_Target_Velocity_Channel_2_Decceleration</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000008}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BYTE</Name>
+			<BitSize>8</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000009}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..8] OF BIT</Name>
+			<BitSize>9</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>9</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<BitSize>1</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
+			<BitSize>2</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>2</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
+			<BitSize>4</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>4</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
+			<BitSize>7</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>7</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00200000000C}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..11] OF BIT</Name>
+			<BitSize>12</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>12</Elements>
+			</ArrayInfo>
+		</DataType>
+	</DataTypes>
+	<ImageDatas>
+		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e000000010018000000000000000000c30e0000c30e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000000080808000000080808000000080808000000000000000000000000000000000ff0000ff0000000000000000ff0000000000ff0000000000ff0000000000ff0000000000000000000000000000000000ff0000ff0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000000080808000000080808000000080808000000000000000000000000000000000ff0000ff0000000000000000ff0000000000ff0000000000ff0000000000ff0000000000000000000000000000000000ff0000ff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007fff007fff007fff007fff007fff007fffff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ff007fff007fff007fff007fff007fff007fffff00ff000000000000000000000000000000000000000000ff00ffff00ff007fff007fff007fff007fff007fff007fffff00ff000000000000000000000000000000000000000000007fffff00ff007fff007fff007fff007fff007fff007fffff00ff000000000000000000000000000000000000000000ff00ffff00ff007fff007fff007fff007fff007fff007fffff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ff007fff007fff007fff007fff007fff007fffff00ff000000000000000000000000ff00ffff00ffff00ffff00ffff00ff</ImageData>
+	</ImageDatas>
+	<Project ProjectGUID="{6D9FB40F-FFBD-4006-B694-4F4CBA928927}" TargetNetId="5.32.108.108.1.1" Target64Bit="true" ShowHideConfigurations="#x6">
+		<System>
+			<Licenses>
+				<Target>
+					<ManualSelect>{27326EE5-AB30-4084-B15B-8CCA96CCBF0B}</ManualSelect>
+					<ManualSelect>{3DDCAB25-BF0E-412C-A721-DC77C1B8099C}</ManualSelect>
+				</Target>
+			</Licenses>
+			<Tasks>
+				<Task Id="3" Priority="20" CycleTime="20000" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project GUID="{CB2C5526-241B-444F-8640-B0289FA40761}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{05C847B3-6BF0-35E7-EAE2-B3FC9435DA6A}">
+					<Name>PLC Instance</Name>
+					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.nEP7402Addr</Name>
+							<Comment><![CDATA[ link with PDO: EP7402 -->InfoData --> AdsAddr.port]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.sNetId</Name>
+							<Comment><![CDATA[ link with PDO: EP7402 -->InfoData --> AdsAddr.netId]]></Comment>
+							<Type GUID="{3BD42FCA-85FC-C899-2F71-A9346CD54EAB}" Namespace="Tc2_System">T_AmsNetIdArr</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input</Name>
+							<Type GUID="{F9EBD08A-60C7-5D87-30AB-0481508722DC}">MDP5001_100_200_705_I_F94A9C2E</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output</Name>
+							<Type GUID="{F9EBD08B-60C7-5D87-30AB-0481508722DC}">MDP5001_100_200_705_O_F94A9C2E</Type>
+						</Var>
+					</Vars>
+					<Contexts>
+						<Context>
+							<Id>0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>2000000</CycleTime>
+						</Context>
+					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
+				</Instance>
+			</Project>
+		</Plc>
+		<Io>
+			<Device Id="3" DevType="111" DevFlags="#x0003" AmsPort="28675" AmsNetId="5.32.108.108.4.1" RemoteName="Device 3 (EtherCAT)" InfoImageId="3">
+				<Name>Device 3 (EtherCAT)</Name>
+				<AddressInfo>
+					<Pnp>
+						<DeviceDesc>X000 (TwinCAT-Intel PCI Ethernet Adapter (Gigabit) </DeviceDesc>
+						<DeviceName>\DEVICE\{E2671276-B633-4500-80B8-0D02C8296E99}</DeviceName>
+						<DeviceData>00010521b123</DeviceData>
+					</Pnp>
+				</AddressInfo>
+				<Image Id="2" AddrType="9" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Box Id="1" BoxType="9099" BoxFlags="#x00000020">
+					<Name>Box 1 (EP7402-0057)</Name>
+					<ImageId>1000</ImageId>
+					<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1cea4052" RevisionNo="#x00150039" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="273" CreateDeviceDataType="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP7402-0057 2 Ch. BLDC Motor, 24VDC, 8x digital In/Output, B23 ENP 5G4, 1x EtherCAT junction" Desc="EP7402-0057" PortABoxInfo="#x00ffffff">
+						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
+						<SyncMan>001100012200010002000000800000010001001122010000</SyncMan>
+						<SyncMan>001212002400010003000000000000001200001224010000</SyncMan>
+						<SyncMan>001916002000010004000000000000001600001920010000</SyncMan>
+						<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
+						<Fmmu>0000000000000000001900010100000002000000000000000000000000000000</Fmmu>
+						<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+						<BootStrapData>0010f400f410f400</BootStrapData>
+						<MBoxUserCmdData>004003000c0000000000000003000000000000000000000000000000000000002081f001040000003900150000</MBoxUserCmdData>
+						<Pdo Name="DI Inputs" Index="#x1a00" Flags="#x0010" SyncMan="3">
+							<Entry Name="Input 1" Index="#x6000" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Input 2" Index="#x6000" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Input 3" Index="#x6000" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Input 4" Index="#x6000" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control input 1" Index="#x6000" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control input 2" Index="#x6000" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control input 3" Index="#x6000" Sub="#x07">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control input 4" Index="#x6000" Sub="#x08">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry>
+								<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Status Channel 1" Index="#x1a01" Flags="#x0010" SyncMan="3">
+							<Entry Name="Status__Ready to enable" Index="#x6020" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Ready" Index="#x6020" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Warning" Index="#x6020" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Error" Index="#x6020" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Moving positive" Index="#x6020" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Moving negative" Index="#x6020" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__">
+								<Type GUID="{18071995-0000-0000-0000-002000000009}">ARRAY [0..8] OF BIT</Type>
+							</Entry>
+							<Entry Name="Status__TxPDO Toggle" Index="#x6020" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Synchron info data Channel 1" Index="#x1a02" Flags="#x0010" SyncMan="3">
+							<Entry Name="Info data 1" Index="#x6020" Sub="#x11">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Info data 2" Index="#x6020" Sub="#x12">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Info data 3" Index="#x6020" Sub="#x16">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Status Channel 2" Index="#x1a03" Flags="#x0010" SyncMan="3">
+							<Entry Name="Status__Ready to enable" Index="#x6030" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Ready" Index="#x6030" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Warning" Index="#x6030" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Error" Index="#x6030" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Moving positive" Index="#x6030" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Moving negative" Index="#x6030" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__">
+								<Type GUID="{18071995-0000-0000-0000-002000000009}">ARRAY [0..8] OF BIT</Type>
+							</Entry>
+							<Entry Name="Status__TxPDO Toggle" Index="#x6030" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Synchron info data Channel 2" Index="#x1a04" Flags="#x0010" SyncMan="3">
+							<Entry Name="Info data 1" Index="#x6030" Sub="#x11">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Info data 2" Index="#x6030" Sub="#x12">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Info data 3" Index="#x6030" Sub="#x16">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Inputs Device" Index="#x1a05" Flags="#x0011" SyncMan="3">
+							<Entry Name="Device Diag__Device undervoltage" Index="#xf600" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Device overvoltage" Index="#xf600" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__">
+								<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Overtemperature warning" Index="#xf600" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Overtemperature error" Index="#xf600" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__General hardware error" Index="#xf600" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__">
+								<Type GUID="{18071995-0000-0000-0000-002000000002}">ARRAY [0..1] OF BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 1 openload" Index="#xf600" Sub="#x09">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 1 short circuit" Index="#xf600" Sub="#x0a">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 1 motor overload I2T warning" Index="#xf600" Sub="#x0b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 1 motor overload I2T error" Index="#xf600" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 1 amplifier overload I2T warning" Index="#xf600" Sub="#x0d">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 1 amplifier overload I2T error" Index="#xf600" Sub="#x0e">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 1 in limit" Index="#xf600" Sub="#x0f">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 1 commutation error" Index="#xf600" Sub="#x10">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__">
+								<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 2 openload" Index="#xf600" Sub="#x15">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 2 short circuit" Index="#xf600" Sub="#x16">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 2 motor overload I2T warning" Index="#xf600" Sub="#x17">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 2 motor overload I2T error" Index="#xf600" Sub="#x18">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 2 amplifier overload I2T warning" Index="#xf600" Sub="#x19">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 2 amplifier overload I2T error" Index="#xf600" Sub="#x1a">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 2 in limit" Index="#xf600" Sub="#x1b">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__Channel 2 commutation error" Index="#xf600" Sub="#x1c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Device Diag__">
+								<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ZNCTRL Inputs Channel 1" Index="#x1a06" Flags="#x0010">
+							<Entry Name="Status__Moving" Index="#x6040" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Zone sensor input" Index="#x6040" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Upstream control input value" Index="#x6040" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Upstream control output value" Index="#x6040" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Downstream control input value" Index="#x6040" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Downstream control output value" Index="#x6040" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Reset Input Value" Index="#x6040" Sub="#x07">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__">
+								<Type GUID="{18071995-0000-0000-0000-002000000009}">ARRAY [0..8] OF BIT</Type>
+							</Entry>
+							<Entry Name="Status__Zone state" Index="#x6040" Sub="#x11">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Status__">
+								<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ZNCTRL Inputs Channel 2" Index="#x1a07" Flags="#x0010">
+							<Entry Name="Status__Moving" Index="#x6050" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Zone sensor input" Index="#x6050" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Upstream control input value" Index="#x6050" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Upstream control output value" Index="#x6050" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Downstream control input value" Index="#x6050" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Downstream control output value" Index="#x6050" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__Reset Input Value" Index="#x6050" Sub="#x07">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Status__">
+								<Type GUID="{18071995-0000-0000-0000-002000000009}">ARRAY [0..8] OF BIT</Type>
+							</Entry>
+							<Entry Name="Status__Zone state" Index="#x6050" Sub="#x11">
+								<Type>USINT</Type>
+							</Entry>
+							<Entry Name="Status__">
+								<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="DO Outputs" Index="#x1600" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Output 1" Index="#x7010" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Output 2" Index="#x7010" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Output 3" Index="#x7010" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Output 4" Index="#x7010" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control output 1" Index="#x7010" Sub="#x05">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control output 2" Index="#x7010" Sub="#x06">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control output 3" Index="#x7010" Sub="#x07">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control output 4" Index="#x7010" Sub="#x08">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry>
+								<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Control Channel 1" Index="#x1601" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Control__Enable" Index="#x7020" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__Reset" Index="#x7020" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__">
+								<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+							</Entry>
+							<Entry Name="Control__Invert direction" Index="#x7020" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__">
+								<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
+							</Entry>
+							<Entry Name="Control__Brake output" Index="#x7020" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__">
+								<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Target Velocity Channel 1" Index="#x1602" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Velocity" Index="#x7020" Sub="#x21">
+								<Type>INT</Type>
+							</Entry>
+							<Entry Name="Accelleration" Index="#x7020" Sub="#x22">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Decceleration" Index="#x7020" Sub="#x23">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Control Channel 2" Index="#x1603" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Control__Enable" Index="#x7030" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__Reset" Index="#x7030" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__">
+								<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+							</Entry>
+							<Entry Name="Control__Invert direction" Index="#x7030" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__">
+								<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
+							</Entry>
+							<Entry Name="Control__Brake output" Index="#x7030" Sub="#x0c">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__">
+								<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="STM Target Velocity Channel 2" Index="#x1604" InOut="1" Flags="#x0010" SyncMan="2">
+							<Entry Name="Velocity" Index="#x7030" Sub="#x21">
+								<Type>INT</Type>
+							</Entry>
+							<Entry Name="Accelleration" Index="#x7030" Sub="#x22">
+								<Type>UINT</Type>
+							</Entry>
+							<Entry Name="Decceleration" Index="#x7030" Sub="#x23">
+								<Type>UINT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ZNCTRL Outputs Channel 1" Index="#x1605" InOut="1" Flags="#x0010">
+							<Entry Name="Control__Reset" Index="#x7040" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__Disable" Index="#x7040" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__Upstream PLC input value" Index="#x7040" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__Downstream PLC input value" Index="#x7040" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__">
+								<Type GUID="{18071995-0000-0000-0000-00200000000C}">ARRAY [0..11] OF BIT</Type>
+							</Entry>
+						</Pdo>
+						<Pdo Name="ZNCTRL Outputs Channel 2" Index="#x1606" InOut="1" Flags="#x0010">
+							<Entry Name="Control__Reset" Index="#x7050" Sub="#x01">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__Disable" Index="#x7050" Sub="#x02">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__Upstream PLC input value" Index="#x7050" Sub="#x03">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__Downstream PLC input value" Index="#x7050" Sub="#x04">
+								<Type>BIT</Type>
+							</Entry>
+							<Entry Name="Control__">
+								<Type GUID="{18071995-0000-0000-0000-00200000000C}">ARRAY [0..11] OF BIT</Type>
+							</Entry>
+						</Pdo>
+						<CoeProfile ProfileNo="6558601"/>
+						<CoeProfile ProfileNo="13112201"/>
+						<CoeProfile ProfileNo="46207881" DisplayName="Ch 1 - Stepper inte"/>
+						<CoeProfile ProfileNo="46207881" DisplayName="Ch 2 - Stepper inte"/>
+						<CoeProfile ProfileNo="64230281"/>
+						<CoeProfile ProfileNo="64230281"/>
+					</EtherCAT>
+				</Box>
+				<EtherCAT/>
+			</Device>
+		</Io>
+	</Project>
+	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500820000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500831000403}" Id="#x02030020"/>
+		<OwnerA Name="TIPC^PLC^PLC Instance">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Box 1 (EP7402-0057)">
+				<Link VarA="PlcTask Inputs^MAIN.nEP7402Addr" VarB="InfoData^AdsAddr^port"/>
+				<Link VarA="PlcTask Inputs^MAIN.sNetId" VarB="InfoData^AdsAddr^netId"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_200_705_STM_Inputs_Device_Device_Diag" VarB="STM Inputs Device^Device Diag"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_DI_Inputs_Control_input_1" VarB="DI Inputs^Control input 1"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_DI_Inputs_Control_input_2" VarB="DI Inputs^Control input 2"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_DI_Inputs_Control_input_3" VarB="DI Inputs^Control input 3"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_DI_Inputs_Control_input_4" VarB="DI Inputs^Control input 4"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_DI_Inputs_Input_1" VarB="DI Inputs^Input 1"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_DI_Inputs_Input_2" VarB="DI Inputs^Input 2"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_DI_Inputs_Input_3" VarB="DI Inputs^Input 3"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_DI_Inputs_Input_4" VarB="DI Inputs^Input 4"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_705_STM_Status_Channel_1_Status" VarB="STM Status Channel 1^Status"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_705_STM_Status_Channel_2_Status" VarB="STM Status Channel 2^Status"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_705_STM_Synchron_info_data_Channel_1_Info_data_1" VarB="STM Synchron info data Channel 1^Info data 1"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_705_STM_Synchron_info_data_Channel_1_Info_data_2" VarB="STM Synchron info data Channel 1^Info data 2"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_705_STM_Synchron_info_data_Channel_1_Info_data_3" VarB="STM Synchron info data Channel 1^Info data 3"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_705_STM_Synchron_info_data_Channel_2_Info_data_1" VarB="STM Synchron info data Channel 2^Info data 1"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_705_STM_Synchron_info_data_Channel_2_Info_data_2" VarB="STM Synchron info data Channel 2^Info data 2"/>
+				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_705_STM_Synchron_info_data_Channel_2_Info_data_3" VarB="STM Synchron info data Channel 2^Info data 3"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_200_DO_Outputs_Control_output_1" VarB="DO Outputs^Control output 1"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_200_DO_Outputs_Control_output_2" VarB="DO Outputs^Control output 2"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_200_DO_Outputs_Control_output_3" VarB="DO Outputs^Control output 3"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_200_DO_Outputs_Control_output_4" VarB="DO Outputs^Control output 4"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_200_DO_Outputs_Output_1" VarB="DO Outputs^Output 1"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_200_DO_Outputs_Output_2" VarB="DO Outputs^Output 2"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_200_DO_Outputs_Output_3" VarB="DO Outputs^Output 3"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_200_DO_Outputs_Output_4" VarB="DO Outputs^Output 4"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_705_STM_Control_Channel_1_Control" VarB="STM Control Channel 1^Control"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_705_STM_Control_Channel_2_Control" VarB="STM Control Channel 2^Control"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_705_STM_Target_Velocity_Channel_1_Accelleration" VarB="STM Target Velocity Channel 1^Accelleration"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_705_STM_Target_Velocity_Channel_1_Decceleration" VarB="STM Target Velocity Channel 1^Decceleration"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_705_STM_Target_Velocity_Channel_1_Velocity" VarB="STM Target Velocity Channel 1^Velocity"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_705_STM_Target_Velocity_Channel_2_Accelleration" VarB="STM Target Velocity Channel 2^Accelleration"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_705_STM_Target_Velocity_Channel_2_Decceleration" VarB="STM Target Velocity Channel 2^Decceleration"/>
+				<Link VarA="PlcTask Outputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Output^MDP5001_705_STM_Target_Velocity_Channel_2_Velocity" VarB="STM Target Velocity Channel 2^Velocity"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
+</TcSmProject>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_SynchronInfoData" Id="{bf6a5bd6-cbd9-4902-a11c-1605eed468b0}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+TYPE E_SynchronInfoData :
+(
+	Motor_velocity 				:= 7,
+	Motor_velocity_filtered 	:= 8,
+	Motor_I2T_load 				:= 11,
+	Amplifier_I2T_load 			:= 12,
+	Motor_dc_current 			:= 13,
+	Motor_dc_current_filtered 	:= 14,
+	Motor_back_emf 				:= 17,
+	Motor_restart_counter 		:= 18,
+	Internal_temperature 		:= 101,
+	Motor_supply_voltage 		:= 104,
+	none
+)USINT:=none;
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

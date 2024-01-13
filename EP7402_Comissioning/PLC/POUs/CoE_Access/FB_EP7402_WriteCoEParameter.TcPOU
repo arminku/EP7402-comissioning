@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_EP7402_WriteCoEParameter" Id="{53a79493-b659-4300-90c7-47b4a860490f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EP7402_WriteCoEParameter
+VAR_IN_OUT 
+	stEP7402_CoE_Parameter	: ST_EP7402_CoE_Parameter;		
+END_VAR
+VAR_INPUT
+	bExecute	: BOOL;
+	sNetId 		: T_AmsNetID;
+	nSlaveAddr	: UINT;
+END_VAR
+VAR_OUTPUT
+	bBusy:BOOL;
+	bError:BOOL;
+	nErrId:UDINT;
+END_VAR
+VAR
+	fbWriteCoEParameterEx				:  FB_EcCoESdoWriteEx;
+	nParameter							:  UINT;
+	nStep								: (init, StartSend_MotorParameter_1, Sending_MotorParameter_1, StartSend_ControllerParameter_1, Sending_ControllerParameter_1, StartSend_SynchronInfoData_1, Sending_SynchronInfoData_1,
+											StartSend_MotorParameter_2, Sending_MotorParameter_2, StartSend_ControllerParameter_2, Sending_ControllerParameter_2, StartSend_SynchronInfoData_2, Sending_SynchronInfoData_2);
+	stCoe_Write_Motor					: ST_EP7402_CoE_Motor;
+	stCoe_Write_Controller				: ST_EP7402_CoE_Controller;
+	stCoe_Write_SynchronInfoData		: ST_EP7402_CoE_SynchronInfoData;
+	fbExecuteTrigger				 	: r_trig;
+	nIndex: uint;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbExecuteTrigger(clk:=bExecute);
+IF fbExecuteTrigger.q THEN
+	nStep:=StartSend_MotorParameter_1;
+	bBusy:=TRUE;
+END_IF
+
+CASE nStep OF
+	init:
+		bBusy := FALSE;
+		bError:=fbWriteCoEParameterEx.bError;
+		nErrId:=fbWriteCoEParameterEx.nErrId;
+	
+	StartSend_MotorParameter_1:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			TransferStructDataToBuffer_Motor(nChannel:=1);
+			fbWriteCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8020, 
+				pSrcBuf:= ADR(stCoe_Write_Motor), 
+				cbBufLen:= SIZEOF(stCoe_Write_Motor), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Sending_MotorParameter_1;
+		END_IF
+
+		
+	Sending_MotorParameter_1:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			IF fbWriteCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= StartSend_ControllerParameter_1;
+			END_IF
+		END_IF
+	
+	StartSend_ControllerParameter_1:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			TransferStructDataToBuffer_Controller(nChannel:=1);
+			fbWriteCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8023, 
+				pSrcBuf:= ADR(stCoe_Write_Controller), 
+				cbBufLen:= SIZEOF(stCoe_Write_Controller), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Sending_ControllerParameter_1;
+		END_IF
+		
+	Sending_ControllerParameter_1:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			IF fbWriteCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= StartSend_SynchronInfoData_1;
+			END_IF
+		END_IF
+		
+	StartSend_SynchronInfoData_1:		
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			TransferStructDataToBuffer_SynchronInfoData(nChannel:=1);
+			fbWriteCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8022, 
+				pSrcBuf:= ADR(stCoe_Write_SynchronInfoData), 
+				cbBufLen:= SIZEOF(stCoe_Write_SynchronInfoData), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Sending_SynchronInfoData_1;
+		END_IF
+		
+	Sending_SynchronInfoData_1:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			IF fbWriteCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= StartSend_MotorParameter_2;
+			END_IF
+		END_IF
+		
+	StartSend_MotorParameter_2:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN						
+			TransferStructDataToBuffer_Motor(nChannel:=2);
+			fbWriteCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8030, 
+				pSrcBuf:= ADR(stCoe_Write_Motor), 
+				cbBufLen:= SIZEOF(stCoe_Write_Motor), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Sending_MotorParameter_2;
+		END_IF
+		
+	Sending_MotorParameter_2:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			IF fbWriteCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= StartSend_ControllerParameter_2;
+			END_IF
+		END_IF
+	
+	StartSend_ControllerParameter_2:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN					
+			TransferStructDataToBuffer_Controller(nChannel:=2);
+			fbWriteCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8033, 
+				pSrcBuf:= ADR(stCoe_Write_Controller), 
+				cbBufLen:= SIZEOF(stCoe_Write_Controller), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep:=	Sending_ControllerParameter_2;
+		END_IF
+		
+	Sending_ControllerParameter_2:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			IF fbWriteCoEParameterEx.bError THEN
+				nStep:= init;
+			ELSE
+				nStep:= StartSend_SynchronInfoData_2;
+			END_IF
+		END_IF
+		
+	StartSend_SynchronInfoData_2:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+			TransferStructDataToBuffer_SynchronInfoData(nChannel:=2);
+			fbWriteCoEParameterEx(
+				sNetId:= sNetId, 
+				nSlaveAddr:= nSlaveAddr, 
+				nIndex:= 16#8032, 
+				pSrcBuf:= ADR(stCoe_Write_SynchronInfoData), 
+				cbBufLen:= SIZEOF(stCoe_Write_SynchronInfoData), 
+				bExecute:= TRUE,
+				bCompleteAccess:= TRUE);
+			nStep :=	Sending_SynchronInfoData_2;
+		END_IF
+		
+	Sending_SynchronInfoData_2:
+		fbWriteCoEParameterEx(bExecute:=FALSE);
+		IF NOT fbWriteCoEParameterEx.bBusy THEN
+				nStep:= init;
+		END_IF
+		
+END_CASE]]></ST>
+    </Implementation>
+    <Method Name="TransferStructDataToBuffer_Controller" Id="{9e69589b-2e5e-4b34-9c20-4bab40fd1486}">
+      <Declaration><![CDATA[METHOD TransferStructDataToBuffer_Controller
+VAR_INPUT
+	nChannel:USINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// The warning can be disabled here as the user is aware of the risk that the reference may not be valid by checking its validity
+{warning disable C0371}
+IF nChannel=1 OR nChannel=2 AND __ISVALIDREF(stEP7402_CoE_Parameter) THEN
+	stCoe_Write_Controller.Sub_Index_003	:= stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Disable_Motor_Diagnosis].nValue.0;            
+	stCoe_Write_Controller.Sub_Index_004	:= stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Disable_I2T_Current_Limiting].nValue.0;        
+	stCoe_Write_Controller.Sub_Index_017	:= stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Velocity_Loop_Integral_Time].nValue;         
+	stCoe_Write_Controller.Sub_Index_018	:= stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Velocity_Loop_Proportional_Gain].nValue;      
+	stCoe_Write_Controller.Sub_Index_019	:= TO_USINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Velocity_Feed_Forward_Gain].nValue);          
+	stCoe_Write_Controller.Sub_Index_020	:= TO_SINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Sensorless_Offset_Scaling].nValue);          
+	stCoe_Write_Controller.Sub_Index_021	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Align_Duration].nValue);                   
+	stCoe_Write_Controller.Sub_Index_024	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Rampup_Duration].nValue);                  
+	stCoe_Write_Controller.Sub_Index_025	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Rampup_Velocity].nValue);                  
+	stCoe_Write_Controller.Sub_Index_033	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Rampup_Needed_Switchover_Events].nValue);      
+	stCoe_Write_Controller.Sub_Index_034	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Commutation_Threshold].nValue);             
+	stCoe_Write_Controller.Sub_Index_035	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Current_Loop_Proportional_Gain].nValue);       
+	stCoe_Write_Controller.Sub_Index_036	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Current_Loop_Integral_Time].nValue);          
+	stCoe_Write_Controller.Sub_Index_037	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Restart_After_Error_Number_Of_Repetition].nValue);
+	stCoe_Write_Controller.Sub_Index_038	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Controller[nChannel][E_EP7402_CoE_Controller.Restart_After_Error_Delay].nValue);          
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TransferStructDataToBuffer_Motor" Id="{69538ad9-fc66-4e04-a852-9279b8e0f497}">
+      <Declaration><![CDATA[METHOD TransferStructDataToBuffer_Motor
+VAR_INPUT
+	nChannel:USINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// The warning can be disabled here as the user is aware of the risk that the reference may not be valid by checking its validity
+{warning disable C0371}
+
+IF nChannel=1 OR nChannel=2 AND __ISVALIDREF(stEP7402_CoE_Parameter) THEN
+	stCoe_Write_Motor.Sub_Index_001	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Peak_Current].nValue);
+	stCoe_Write_Motor.Sub_Index_002	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Rated_Current].nValue);
+	stCoe_Write_Motor.Sub_Index_003	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Rated_Voltage].nValue);
+	stCoe_Write_Motor.Sub_Index_004	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Phase_To_Phase_Resistance].nValue);
+	stCoe_Write_Motor.Sub_Index_009	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Start_Velocity].nValue);
+	stCoe_Write_Motor.Sub_Index_019	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Mechanical_To_Electrical_Ratio].nValue);
+	stCoe_Write_Motor.Sub_Index_020	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Rated_Velocity].nValue);
+	stCoe_Write_Motor.Sub_Index_022	:= TO_USINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.I2T_Warn_Level].nValue);
+	stCoe_Write_Motor.Sub_Index_024	:= TO_USINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.I2T_Error_Level].nValue);
+	stCoe_Write_Motor.Sub_Index_025	:= TO_UINT(stEP7402_CoE_Parameter.astCoE_Parameter_Motor[nChannel][E_EP7402_CoE_Motor.Motor_Thermal_Time_Constant].nValue);
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TransferStructDataToBuffer_SynchronInfoData" Id="{47fa87f3-89d5-4425-8706-7c38d019ad9c}">
+      <Declaration><![CDATA[METHOD TransferStructDataToBuffer_SynchronInfoData
+VAR_INPUT
+	nChannel:USINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// The warning can be disabled here as the user is aware of the risk that the reference may not be valid by checking its validity
+{warning disable C0371}
+
+IF nChannel=1 OR nChannel=2 AND __ISVALIDREF(stEP7402_CoE_Parameter) THEN
+	stCoe_Write_SynchronInfoData.nInfoData1	:= TO_USINT(stEP7402_CoE_Parameter.astCoE_Parameter_SynchronInfoData[nChannel][1]);
+	stCoe_Write_SynchronInfoData.nInfoData2	:= TO_USINT(stEP7402_CoE_Parameter.astCoE_Parameter_SynchronInfoData[nChannel][2]);
+	stCoe_Write_SynchronInfoData.nInfoData3	:= TO_USINT(stEP7402_CoE_Parameter.astCoE_Parameter_SynchronInfoData[nChannel][3]);
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_EP7402_WriteCoEParameter">
+      <LineId Id="328" Count="4" />
+      <LineId Id="336" Count="56" />
+      <LineId Id="506" Count="0" />
+      <LineId Id="508" Count="2" />
+      <LineId Id="536" Count="0" />
+      <LineId Id="511" Count="12" />
+      <LineId Id="532" Count="0" />
+      <LineId Id="526" Count="3" />
+      <LineId Id="507" Count="0" />
+      <LineId Id="533" Count="0" />
+      <LineId Id="393" Count="1" />
+      <LineId Id="396" Count="0" />
+      <LineId Id="448" Count="0" />
+      <LineId Id="446" Count="0" />
+      <LineId Id="401" Count="9" />
+      <LineId Id="412" Count="13" />
+      <LineId Id="449" Count="0" />
+      <LineId Id="429" Count="12" />
+      <LineId Id="534" Count="0" />
+      <LineId Id="502" Count="3" />
+      <LineId Id="444" Count="0" />
+      <LineId Id="531" Count="0" />
+      <LineId Id="474" Count="0" />
+      <LineId Id="477" Count="2" />
+      <LineId Id="537" Count="0" />
+      <LineId Id="495" Count="6" />
+      <LineId Id="487" Count="7" />
+      <LineId Id="475" Count="0" />
+      <LineId Id="445" Count="0" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EP7402_WriteCoEParameter.TransferStructDataToBuffer_Controller">
+      <LineId Id="85" Count="1" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="93" Count="7" />
+      <LineId Id="102" Count="5" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="35" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EP7402_WriteCoEParameter.TransferStructDataToBuffer_Motor">
+      <LineId Id="66" Count="1" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="81" Count="7" />
+      <LineId Id="48" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_EP7402_WriteCoEParameter.TransferStructDataToBuffer_SynchronInfoData">
+      <LineId Id="66" Count="1" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="48" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
