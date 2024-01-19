@@ -319,72 +319,72 @@
 </script>
 <div id="TcHmiEllipse_18" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiEllipse" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="1" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="35" data-tchmi-width-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-right="0">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Device_undervoltage%/s%",
-    "actions": [
-      {
+    <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+        [
+        {
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
+        "actions": [
+        {
         "objectType": "Condition",
         "active": true,
         "parts": [
-          {
-            "if": [
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Device_undervoltage%/s%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/BIT",
-                  "value": "True"
-                },
-                "compareOperator": "==",
-                "logic": null
-              }
-            ],
-            "then": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiEllipse_18::ClassNames%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ClassNameList",
-                  "value": [
-                    "isActive"
-                  ]
-                },
-                "asyncWait": true
-              }
-            ]
-          },
-          {
-            "else": [
-              {
-                "objectType": "WriteToSymbol",
-                "active": true,
-                "symbolExpression": "%ctrl%TcHmiEllipse_18::ClassNames%/ctrl%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ClassNameList",
-                  "value": [
-                    "isNotActive"
-                  ]
-                },
-                "asyncWait": true
-              }
-            ]
-          }
+        {
+        "if": [
+        {
+        "compare1": {
+        "objectType": "Symbol",
+        "valueType": "tchmi:general#/definitions/String",
+        "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Device_undervoltage%/s%"
+        },
+        "compare2": {
+        "objectType": "StaticValue",
+        "valueType": "tchmi:general#/definitions/BIT",
+        "value": "True"
+        },
+        "compareOperator": "==",
+        "logic": null
+        }
+        ],
+        "then": [
+        {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%TcHmiEllipse_18::ClassNames%/ctrl%",
+        "value": {
+        "objectType": "StaticValue",
+        "valueType": "tchmi:framework#/definitions/ClassNameList",
+        "value": [
+        "isActive"
+        ]
+        },
+        "asyncWait": true
+        }
+        ]
+        },
+        {
+        "else": [
+        {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%TcHmiEllipse_18::ClassNames%/ctrl%",
+        "value": {
+        "objectType": "StaticValue",
+        "valueType": "tchmi:framework#/definitions/ClassNameList",
+        "value": [
+        "isNotActive"
+        ]
+        },
+        "asyncWait": true
+        }
+        ]
+        }
         ],
         "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
+        }
+        ]
+        }
+        ]
+    </script>
 
 <script data-tchmi-target-attribute="data-tchmi-class-names" type="application/json">
 [
@@ -466,7 +466,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Device_overvoltage%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -610,7 +610,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Overtemperature_warning%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -754,7 +754,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Overtemperature_error%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -898,7 +898,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::General_hardware_error%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -1220,7 +1220,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_openload|SubscriptionMode=Poll|Interval=10%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -1364,7 +1364,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_short_circuit%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -1574,7 +1574,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_motor_overload_I2T_warning%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -1718,7 +1718,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_motor_overload_I2T_error%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -1928,7 +1928,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_amplifier_overload_I2T_warning%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -2072,7 +2072,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_amplifier_overload_I2T_error%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -2282,7 +2282,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_in_limit%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -2424,71 +2424,71 @@
 
 
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-        [
-        {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_commutation_error%/s%",
-        "actions": [
-        {
+[
+  {
+    "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
+    "actions": [
+      {
         "objectType": "Condition",
         "active": true,
         "parts": [
-        {
-        "if": [
-        {
-        "compare1": {
-        "objectType": "Symbol",
-        "valueType": "tchmi:general#/definitions/BIT",
-        "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_commutation_error%/s%"
-        },
-        "compare2": {
-        "objectType": "StaticValue",
-        "valueType": "tchmi:general#/definitions/BIT",
-        "value": true
-        },
-        "compareOperator": "==",
-        "logic": null
-        }
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/BIT",
+                  "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_1_commutation_error%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BIT",
+                  "value": true
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiEllipse_30::ClassNames%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/ClassNameList",
+                  "value": [
+                    "isActive"
+                  ]
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%ctrl%TcHmiEllipse_30::ClassNames%/ctrl%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:framework#/definitions/ClassNameList",
+                  "value": [
+                    "isNotActive"
+                  ]
+                },
+                "asyncWait": true
+              }
+            ]
+          }
         ],
-        "then": [
-        {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%ctrl%TcHmiEllipse_30::ClassNames%/ctrl%",
-        "value": {
-        "objectType": "StaticValue",
-        "valueType": "tchmi:framework#/definitions/ClassNameList",
-        "value": [
-        "isActive"
-        ]
-        },
         "asyncWait": true
-        }
-        ]
-        },
-        {
-        "else": [
-        {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%ctrl%TcHmiEllipse_30::ClassNames%/ctrl%",
-        "value": {
-        "objectType": "StaticValue",
-        "valueType": "tchmi:framework#/definitions/ClassNameList",
-        "value": [
-        "isNotActive"
-        ]
-        },
-        "asyncWait": true
-        }
-        ]
-        }
-        ],
-        "asyncWait": true
-        }
-        ]
-        }
-        ]
-    </script>
+      }
+    ]
+  }
+]
+</script>
 
 <script data-tchmi-target-attribute="data-tchmi-class-names" type="application/json">
 [
@@ -3719,7 +3719,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_2_openload|SubscriptionMode=Poll|Interval=10%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -3863,7 +3863,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_2_short_circuit%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -4073,7 +4073,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_2_motor_overload_I2T_warning%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -4217,7 +4217,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_2_motor_overload_I2T_error%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -4427,7 +4427,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_2_amplifier_overload_I2T_warning%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -4571,7 +4571,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_2_amplifier_overload_I2T_error%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -4781,7 +4781,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_2_in_limit%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",
@@ -4926,7 +4926,7 @@
     <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
         [
         {
-        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag::Channel_2_commutation_error%/s%",
+        "event": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_100_200_705_STM_Inputs_Device_Device_Diag%/s%",
         "actions": [
         {
         "objectType": "Condition",

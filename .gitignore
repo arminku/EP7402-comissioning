@@ -3,6 +3,9 @@
 ### TwinCAT3 ###
 # website: https://www.beckhoff.com/twincat3/
 
+TwinCAT HMI
+liveview_*.html
+
 # TwinCAT PLC
 *.plcproj.bak
 *.plcproj.orig
