@@ -49,7 +49,7 @@
 }
 </script>
 </div>
-<div id="TcHmiTextblock_67" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left-unit="px" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="200" data-tchmi-text-font-size-unit="%" data-tchmi-bottom="10" data-tchmi-text-vertical-alignment="Center" data-tchmi-grid-row-index="3" data-tchmi-grid-column-index="1" data-tchmi-width="350" data-tchmi-tooltip="Check documentation if error status <> 0,0,0,0,0,0r\nStatus 0 0 0 0 0 0: Ready to start Scan\r\nStatus 3 0 0 0 0 1: False Channel State: Channel Enabled.\r\nStatus 3 0 0 0 0 2: False Channel State. : Ready to enable <> 1. Check Channel Diagnosis\r\nStatus 3 0 0 0 0 3: General Hardware Error\r\nStatus 3 0 0 0 0 4: Scan unsuccessful. Check Motor connection and free motor shaft" data-tchmi-right="10" data-tchmi-top="5" data-tchmi-left="200">
+<div id="TcHmiTextblock_67" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left-unit="px" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="200" data-tchmi-text-font-size-unit="%" data-tchmi-bottom="10" data-tchmi-text-vertical-alignment="Center" data-tchmi-grid-row-index="2" data-tchmi-grid-column-index="3" data-tchmi-width="350" data-tchmi-tooltip="Check documentation if error status <> 0,0,0,0,0,0r\nStatus 0 0 0 0 0 0: Ready to start Scan\r\nStatus 3 0 0 0 0 1: False Channel State: Channel Enabled.\r\nStatus 3 0 0 0 0 2: False Channel State. : Ready to enable <> 1. Check Channel Diagnosis\r\nStatus 3 0 0 0 0 3: General Hardware Error\r\nStatus 3 0 0 0 0 4: Scan unsuccessful. Check Motor connection and free motor shaft" data-tchmi-right="10" data-tchmi-top="5" data-tchmi-left="200">
 0,0,0,0,0,0r\nStatus 0 0 0 0 0 0: Ready to start Scan\r\nStatus 3 0 0 0 0 1: False Channel State: Channel Enabled.\r\nStatus 3 0 0 0 0 2: False Channel State. : Ready to enable <> 1. Check Channel Diagnosis\r\nStatus 3 0 0 0 0 3: General Hardware Error\r\nStatus 3 0 0 0 0 4: Scan unsuccessful. Check Motor connection and free motor shaft" data-tchmi-height="80" data-tchmi-left="400">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
@@ -160,7 +160,65 @@
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "TcHmiButton_102.onStatePressed",
+    "event": "TcHmiButton_102.onPressed",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "symbolExpression": "%s%PLC1.MAIN.bMotorChannel_1_Selected%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "value": true
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Output::MDP5001_705_STM_Control_Channel_1_Control::Enable%/s%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BIT",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Output::MDP5001_705_STM_Control_Channel_2_Control::Enable%/s%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BIT",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  },
+  {
+    "event": "TcHmiButton_102.onMouseDown",
     "actions": [
       {
         "objectType": "Condition",
@@ -314,12 +372,12 @@
 }
 </script>
 </div>
-<div id="TcHmiDatagrid_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height-unit="px" data-tchmi-left="5" data-tchmi-left-unit="px" data-tchmi-top="50" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-right="5" data-tchmi-bottom="10" data-tchmi-grid-column-index="1" data-tchmi-header-height="50" data-tchmi-header-font-size-unit="%" data-tchmi-header-font-size="140" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-show-row-numbers="false" data-tchmi-row-height="50" data-tchmi-grid-font-size="140" data-tchmi-grid-font-size-unit="%" data-tchmi-data-symbol="%s%PLC1.MAIN.st_EP7402_CoE_Parameter.astCoE_Parameter_Motor.0|BindingEvent=onDataChanged%/s%" data-tchmi-grid-row-index="1" data-tchmi-tooltip="CoE Parameter (Index 8020/8030) regarding the motor.">
+<div id="TcHmiDatagrid_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="50" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-right="0" data-tchmi-bottom="10" data-tchmi-grid-column-index="1" data-tchmi-header-height="50" data-tchmi-header-font-size-unit="%" data-tchmi-header-font-size="140" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-show-row-numbers="false" data-tchmi-row-height="50" data-tchmi-grid-font-size="140" data-tchmi-grid-font-size-unit="%" data-tchmi-data-symbol="%s%PLC1.MAIN.st_EP7402_CoE_Parameter.astCoE_Parameter_Motor.0|BindingEvent=onDataChanged%/s%" data-tchmi-grid-row-index="1" data-tchmi-tooltip="CoE Parameter (Index 8020/8030) regarding the motor.">
 <script data-tchmi-target-attribute="data-tchmi-src-column" type="application/json">
 [
   {
     "name": "sSubIndex",
-    "label": "Index Number",
+    "label": "CoE-Index",
     "control": "TextBlock",
     "width": 1,
     "widthUnit": "factor",
@@ -363,7 +421,7 @@
   },
   {
     "name": "sValueRange",
-    "label": "Range of Values",
+    "label": "Value Range",
     "control": "TextBlock",
     "width": 1,
     "widthUnit": "factor",
@@ -603,6 +661,10 @@
   },
   {
     "event": "TcHmiToggleButton.onStatePressed",
+    "actions": []
+  },
+  {
+    "event": "TcHmiToggleButton.onPressed",
     "actions": [
       {
         "objectType": "Condition",
@@ -613,7 +675,7 @@
               {
                 "compare1": {
                   "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
+                  "valueType": "tchmi:general#/definitions/BOOL",
                   "symbolExpression": "%s%PLC1.MAIN.bMotorChannel_1_Selected%/s%"
                 },
                 "compare2": {
@@ -747,9 +809,9 @@
 }
 </script>
 </div>
-<div id="TcHmiRadioButton_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRadioButton" data-tchmi-height-unit="px" data-tchmi-left-unit="px" data-tchmi-text="Motor Channel 2" data-tchmi-top="35" data-tchmi-top-unit="px" data-tchmi-width="300" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-radio-state="Normal" data-tchmi-bottom="350" data-tchmi-height="35" data-tchmi-text-font-size-unit="%" data-tchmi-text-font-size="200" data-tchmi-radio-group="Motor_Channel" data-tchmi-zindex="6" data-tchmi-tooltip="Select Motor Channel for Configuration and Motor Control." data-tchmi-right="20" data-tchmi-grid-column-index="1">
+<div id="TcHmiRadioButton_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRadioButton" data-tchmi-height-unit="px" data-tchmi-left-unit="px" data-tchmi-text="Motor Channel 2" data-tchmi-top="35" data-tchmi-top-unit="px" data-tchmi-width="200" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-radio-state="Normal" data-tchmi-bottom="350" data-tchmi-height="35" data-tchmi-text-font-size-unit="%" data-tchmi-text-font-size="200" data-tchmi-radio-group="Motor_Channel" data-tchmi-zindex="6" data-tchmi-tooltip="Select Motor Channel for Configuration and Motor Control." data-tchmi-right="20" data-tchmi-grid-column-index="1">
 </div>
-<div id="TcHmiRadioButton" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRadioButton" data-tchmi-height-unit="px" data-tchmi-left-unit="px" data-tchmi-text="Motor Channel 1" data-tchmi-top="35" data-tchmi-top-unit="px" data-tchmi-width="300" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-radio-state="Active" data-tchmi-bottom="20" data-tchmi-height="35" data-tchmi-text-font-size-unit="%" data-tchmi-text-font-size="200" data-tchmi-radio-group="Motor_Channel" data-tchmi-zindex="12" data-tchmi-tooltip="Select Motor Channel for Configuration and Motor Control." data-tchmi-state-symbol="%s%PLC1.MAIN.bMotorChannel_1_Selected%/s%" data-tchmi-left="300" data-tchmi-grid-column-index="1">
+<div id="TcHmiRadioButton" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiRadioButton" data-tchmi-height-unit="px" data-tchmi-left-unit="px" data-tchmi-text="Motor Channel 1" data-tchmi-top="35" data-tchmi-top-unit="px" data-tchmi-width="200" data-tchmi-width-unit="px" data-tchmi-text-vertical-alignment="Center" data-tchmi-radio-state="Active" data-tchmi-bottom="20" data-tchmi-height="35" data-tchmi-text-font-size-unit="%" data-tchmi-text-font-size="200" data-tchmi-radio-group="Motor_Channel" data-tchmi-zindex="12" data-tchmi-tooltip="Select Motor Channel for Configuration and Motor Control." data-tchmi-state-symbol="%s%PLC1.MAIN.bMotorChannel_1_Selected%/s%" data-tchmi-grid-column-index="1" data-tchmi-right="250">
 </div>
 <div id="TcHmiButton_8" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height-unit="px" data-tchmi-left-unit="px" data-tchmi-text="Reset Parameter" data-tchmi-top-unit="px" data-tchmi-width="200" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-text-font-size-unit="%" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-grid-row-index="0" data-tchmi-bottom="15" data-tchmi-text-font-size="150" data-tchmi-top="20" data-tchmi-tooltip="Reset CoE Parameter Settings to Delivery State" data-tchmi-state-symbol="%s%PLC1.MAIN.fbResetCoE_Parameter.bExecute%/s%" data-tchmi-zindex="5" data-tchmi-grid-column-index="3" data-tchmi-right="20">
 <script data-tchmi-target-attribute="data-tchmi-text-color" type="application/json">
@@ -783,7 +845,7 @@
 [
   {
     "name": "sSubIndex",
-    "label": "Index Number",
+    "label": "CoE-Index",
     "control": "TextBlock",
     "width": 1,
     "widthUnit": "factor",
@@ -827,7 +889,7 @@
   },
   {
     "name": "sValueRange",
-    "label": "Range of Values",
+    "label": "Value Range",
     "control": "TextBlock",
     "width": 1,
     "widthUnit": "factor",

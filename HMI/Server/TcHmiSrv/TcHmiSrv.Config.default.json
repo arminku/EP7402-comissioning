@@ -1003,7 +1003,6 @@
             "ENABLED": true,
             "NAME": "TcHmiScope",
             "PATH": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Scope.14.1.100\\runtimes\\win\\net472\\",
-            "PROCESSID": -1,
             "REQUIRED": false,
             "STARTUPTYPE": 1
         },

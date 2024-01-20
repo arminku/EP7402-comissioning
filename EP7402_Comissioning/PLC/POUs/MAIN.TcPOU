@@ -49,6 +49,14 @@ fbResetCoE_Parameter(	sNetID:=F_CreateAmsNetId(sNetId),
 	//Request single Motor Steps
 	fbEP7402_AutoRequestSteps(bEnable:=fbEP7402_AutoRequestSteps.bEnable, bMotorChannel_1:=bMotorChannel_1_Selected,sNetID:=F_CreateAmsNetId(sNetId),nSlaveAddr:=nEP7402Addr);
 	//Request Motor Scan
+	IF fbEP7402_ScanMotor.bExecute THEN
+		IF bMotorChannel_1_Selected THEN
+			stEP7402_PDOs.MDP5001_100_200_705_Output.MDP5001_705_STM_Control_Channel_1_Control.Enable:=FALSE;
+		ELSE	
+			stEP7402_PDOs.MDP5001_100_200_705_Output.MDP5001_705_STM_Control_Channel_2_Control.Enable:=FALSE;
+		END_IF
+	END_IF
+		
 	fbEP7402_ScanMotor(bExecute:=fbEP7402_ScanMotor.bExecute, bMotorChannel_1:=bMotorChannel_1_Selected,sNetID:=F_CreateAmsNetId(sNetId),nSlaveAddr:=nEP7402Addr);
 
 ]]></ST>
@@ -115,6 +123,12 @@ stLast_EP7402_CoE_Parameter:=st_EP7402_CoE_Parameter;]]></ST>
       <LineId Id="2688" Count="0" />
       <LineId Id="2303" Count="0" />
       <LineId Id="2700" Count="0" />
+      <LineId Id="2738" Count="0" />
+      <LineId Id="2741" Count="0" />
+      <LineId Id="2743" Count="2" />
+      <LineId Id="2747" Count="0" />
+      <LineId Id="2742" Count="0" />
+      <LineId Id="2737" Count="0" />
       <LineId Id="2583" Count="0" />
       <LineId Id="2615" Count="0" />
       <LineId Id="2301" Count="0" />
