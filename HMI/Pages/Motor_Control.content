@@ -13,7 +13,7 @@
     "overflow": false
   },
   {
-    "height": 180.0,
+    "height": 200.0,
     "heightUnit": "px",
     "heightMode": "Value",
     "maxHeightUnit": "px",
@@ -92,7 +92,7 @@
   }
 ]
 </script>
-<div id="TcHmiTextblock_56" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-text="Reset" data-tchmi-top="100" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="200" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="0" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-bottom="10" data-tchmi-right="0" data-tchmi-text-font-size-unit="%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_56" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-text="Reset" data-tchmi-top="120" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="200" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="0" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-bottom="10" data-tchmi-right="0" data-tchmi-text-font-size-unit="%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
 </div>
 <div id="TcHmiGrid_49" data-tchmi-type="TcHmi.Controls.System.TcHmiGrid" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="0" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
 
@@ -107,7 +107,7 @@
     "overflow": false
   },
   {
-    "width": 80.0,
+    "width": 90.0,
     "widthUnit": "px",
     "widthMode": "Value",
     "maxWidthUnit": "px",
@@ -124,7 +124,7 @@
   }
 ]
 </script>
-<div id="TcHmiButton_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="80" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="20" data-tchmi-top-unit="px" data-tchmi-width="80" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="0" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-background-image-width-unit="%" data-tchmi-background-image-height-unit="%" data-tchmi-opacity="1" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="0" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-background-image="Imports/Icons/icons8-reset-52.png" data-tchmi-background-image-width="70" data-tchmi-background-image-height="70" data-tchmi-right="0" data-tchmi-text-horizontal-alignment="Left" data-tchmi-icon-horizontal-alignment="Center" data-tchmi-icon-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Output::MDP5001_705_STM_Control_Channel_1_Control::Reset%/s%" data-tchmi-is-enabled="%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_705_STM_Status_Channel_1_Status::Error%/s%" data-tchmi-tooltip="When Motor is in Error State press for Resetting the Motor Channel. ">
+<div id="TcHmiButton_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="90" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="25" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="0" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-background-image-width-unit="%" data-tchmi-background-image-height-unit="%" data-tchmi-opacity="1" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="0" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-background-image="Imports/Icons/icons8-reset-52.png" data-tchmi-background-image-width="70" data-tchmi-background-image-height="70" data-tchmi-right="0" data-tchmi-text-horizontal-alignment="Left" data-tchmi-icon-horizontal-alignment="Center" data-tchmi-icon-vertical-alignment="Center" data-tchmi-state-symbol="%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Output::MDP5001_705_STM_Control_Channel_1_Control::Reset%/s%" data-tchmi-is-enabled="%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_705_STM_Status_Channel_1_Status::Error%/s%" data-tchmi-tooltip="When Motor is in Error State press for Resetting the Motor Channel. ">
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
   "color": "rgba(69, 66, 195, 1)"
@@ -241,7 +241,7 @@
     "overflow": false
   },
   {
-    "width": 80.0,
+    "width": 90.0,
     "widthUnit": "px",
     "widthMode": "Value",
     "maxWidthUnit": "px",
@@ -258,7 +258,7 @@
   }
 ]
 </script>
-<div id="TcHmiButton_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="20" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="0" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="1" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-background-image="Imports/Icons/icons8-pause-button-48.png" data-tchmi-right="0" data-tchmi-bottom="0" data-tchmi-height="80" data-tchmi-is-enabled="%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_705_STM_Status_Channel_1_Status::Ready%/s%" data-tchmi-tooltip="When Motor is enabled, press for disabling the motor channel.">
+<div id="TcHmiButton_4" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="25" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="0" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="1" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-background-image="Imports/Icons/icons8-pause-button-48.png" data-tchmi-right="0" data-tchmi-height="90" data-tchmi-is-enabled="%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_705_STM_Status_Channel_1_Status::Ready%/s%" data-tchmi-tooltip="When Motor is enabled, press for disabling the motor channel.">
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
   "color": "rgba(235, 2, 2, 1)"
@@ -401,7 +401,7 @@
     "overflow": false
   },
   {
-    "width": 80.0,
+    "width": 90.0,
     "widthUnit": "px",
     "widthMode": "Value",
     "maxWidthUnit": "px",
@@ -418,7 +418,7 @@
   }
 ]
 </script>
-<div id="TcHmiButton_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="80" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="20" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="0" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="0" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-background-image="Imports/Icons/icons8-play-button-circled-50.png" data-tchmi-right="0"  data-tchmi-is-enabled="%f%!%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_705_STM_Status_Channel_1_Status::Ready%/s%%/f%" data-tchmi-tooltip="When Motor is ready to enable, press to enable motor channel.">
+<div id="TcHmiButton_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="90" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="25" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="0" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="1" data-tchmi-grid-row-index="0" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-background-image="Imports/Icons/icons8-play-button-circled-50.png" data-tchmi-right="0"  data-tchmi-is-enabled="%f%!%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Input::MDP5001_705_STM_Status_Channel_1_Status::Ready%/s%%/f%" data-tchmi-tooltip="When Motor is ready to enable, press to enable motor channel.">
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
 {
   "color": "rgba(0, 193, 7, 1)"
@@ -549,9 +549,9 @@
 </script>
 </div>
 </div>
-<div id="TcHmiTextblock_55" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-text="Disable Motor" data-tchmi-top="100" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="200" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="2" data-tchmi-grid-row-index="0" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-bottom="10" data-tchmi-right="0" data-tchmi-text-font-size-unit="%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_55" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-text="Disable Motor" data-tchmi-top="120" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="200" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="2" data-tchmi-grid-row-index="0" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-bottom="10" data-tchmi-right="0" data-tchmi-text-font-size-unit="%" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
 </div>
-<div id="TcHmiTextblock_54" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-text="Enable Motor" data-tchmi-top="100" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="200" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-text-font-size-unit="%" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="3" data-tchmi-grid-row-index="1" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-bottom="10" data-tchmi-right="0" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
+<div id="TcHmiTextblock_54" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-text="Enable Motor" data-tchmi-top="120" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-font-size="200" data-tchmi-right-unit="px" data-tchmi-bottom-unit="px" data-tchmi-text-font-size-unit="%" data-tchmi-background-image-width-unit="px" data-tchmi-background-image-height-unit="px" data-tchmi-opacity="1" data-tchmi-grid-column-index="3" data-tchmi-grid-row-index="1" data-tchmi-max-width-unit="px" data-tchmi-max-height-unit="px" data-tchmi-min-width-unit="px" data-tchmi-min-height-unit="px" data-tchmi-bottom="10" data-tchmi-right="0" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center">
 </div>
 <div id="TcHmiGrid_52" data-tchmi-type="TcHmi.Controls.System.TcHmiGrid" data-tchmi-grid-column-index="6" data-tchmi-grid-row-index="0" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-right="0" data-tchmi-bottom="0">
 
@@ -1094,7 +1094,7 @@
 
 
 </div>
-<div id="TcHmiTextblock_65" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="%" data-tchmi-left="30" data-tchmi-left-unit="%" data-tchmi-top-unit="px" data-tchmi-width-unit="%" data-tchmi-word-wrap="true" data-tchmi-text-font-size="200" data-tchmi-text-font-size-unit="%" data-tchmi-right="0" data-tchmi-bottom="10" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Left" data-tchmi-text-vertical-alignment="Center" data-tchmi-grid-row-index="0" data-tchmi-top="10" data-tchmi-grid-column-index="5" data-tchmi-right-unit="px" data-tchmi-text="Channel Status">
+<div id="TcHmiTextblock_65" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="%" data-tchmi-left="30" data-tchmi-left-unit="%" data-tchmi-top-unit="px" data-tchmi-width-unit="%" data-tchmi-word-wrap="true" data-tchmi-text-font-size="220" data-tchmi-text-font-size-unit="%" data-tchmi-right="0" data-tchmi-bottom="10" data-tchmi-background-image-horizontal-alignment="Center" data-tchmi-background-image-vertical-alignment="Center" data-tchmi-text-horizontal-alignment="Left" data-tchmi-text-vertical-alignment="Center" data-tchmi-grid-row-index="0" data-tchmi-top="10" data-tchmi-grid-column-index="5" data-tchmi-right-unit="px" data-tchmi-text="Channel Status">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "left": 10,

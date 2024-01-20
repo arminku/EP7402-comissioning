@@ -156,6 +156,69 @@
   "color": "rgba(0, 0, 0, 1)"
 }
 </script>
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "TcHmiButton_102.onStatePressed",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "symbolExpression": "%s%PLC1.MAIN.bMotorChannel_1_Selected%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "value": true
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Output::MDP5001_705_STM_Control_Channel_1_Control::Enable%/s%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BIT",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Output::MDP5001_705_STM_Control_Channel_2_Control::Enable%/s%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BIT",
+                  "value": false
+                },
+                "asyncWait": true
+              }
+            ]
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
 </div>
 <div id="TcHmiTextblock_68" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height-unit="px" data-tchmi-left-unit="px" data-tchmi-text="Count Motor Steps" data-tchmi-top-unit="px" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="200" data-tchmi-text-font-size-unit="%" data-tchmi-bottom="10" data-tchmi-text-vertical-alignment="Center" data-tchmi-grid-row-index="2" data-tchmi-grid-column-index="1" data-tchmi-tooltip="Check documentation if error status <> 0,0,0,0,0,0r\nStatus 0 0 0 0 0 0: No Error\r\nStatus 2 0 0 0 0 : False Channel State: Channel Not Enabled" data-tchmi-left="0" data-tchmi-top="5" data-tchmi-right="0">
 <script data-tchmi-target-attribute="data-tchmi-background-color" type="application/json">
@@ -532,6 +595,64 @@
           },
           {
             "else": []
+          }
+        ],
+        "asyncWait": true
+      }
+    ]
+  },
+  {
+    "event": "TcHmiToggleButton.onStatePressed",
+    "actions": [
+      {
+        "objectType": "Condition",
+        "active": true,
+        "parts": [
+          {
+            "if": [
+              {
+                "compare1": {
+                  "objectType": "Symbol",
+                  "valueType": "tchmi:general#/definitions/String",
+                  "symbolExpression": "%s%PLC1.MAIN.bMotorChannel_1_Selected%/s%"
+                },
+                "compare2": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BOOL",
+                  "value": true
+                },
+                "compareOperator": "==",
+                "logic": null
+              }
+            ],
+            "then": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Output::MDP5001_705_STM_Control_Channel_1_Control::Enable%/s%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BIT",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
+          },
+          {
+            "else": [
+              {
+                "objectType": "WriteToSymbol",
+                "active": true,
+                "symbolExpression": "%s%PLC1.MAIN.stEP7402_PDOs::MDP5001_100_200_705_Output::MDP5001_705_STM_Control_Channel_2_Control::Enable%/s%",
+                "value": {
+                  "objectType": "StaticValue",
+                  "valueType": "tchmi:general#/definitions/BIT",
+                  "value": true
+                },
+                "asyncWait": true
+              }
+            ]
           }
         ],
         "asyncWait": true
