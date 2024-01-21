@@ -840,7 +840,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiLinearGauge::Value%/ctrl%",
+                "symbolExpression": "%ctrl%TcHmiLinearGauge_3::Value%/ctrl%",
                 "value": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
@@ -855,7 +855,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiLinearGauge::Value%/ctrl%",
+                "symbolExpression": "%ctrl%TcHmiLinearGauge_3::Value%/ctrl%",
                 "value": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
@@ -902,7 +902,7 @@
                 "value": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%ctrl%TcHmiLinearGauge::Value%/ctrl%"
+                  "symbolExpression": "%ctrl%TcHmiLinearGauge_3::Value%/ctrl%"
                 },
                 "asyncWait": true
               }
@@ -917,7 +917,7 @@
                 "value": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%ctrl%TcHmiLinearGauge::Value%/ctrl%"
+                  "symbolExpression": "%ctrl%TcHmiLinearGauge_3::Value%/ctrl%"
                 },
                 "asyncWait": true
               }
@@ -984,7 +984,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiLinearGauge::Value%/ctrl%",
+                "symbolExpression": "%ctrl%TcHmiLinearGauge_4::Value%/ctrl%",
                 "value": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
@@ -999,7 +999,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiLinearGauge::Value%/ctrl%",
+                "symbolExpression": "%ctrl%TcHmiLinearGauge_4::Value%/ctrl%",
                 "value": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
@@ -1046,7 +1046,7 @@
                 "value": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%ctrl%TcHmiLinearGauge::Value%/ctrl%"
+                  "symbolExpression": "%ctrl%TcHmiLinearGauge_4::Value%/ctrl%"
                 },
                 "asyncWait": true
               }
@@ -1061,7 +1061,7 @@
                 "value": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%ctrl%TcHmiLinearGauge::Value%/ctrl%"
+                  "symbolExpression": "%ctrl%TcHmiLinearGauge_4::Value%/ctrl%"
                 },
                 "asyncWait": true
               }

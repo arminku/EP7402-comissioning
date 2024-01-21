@@ -445,7 +445,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000009}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..8] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000009}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..8] OF BIT</Name>
 			<BitSize>9</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -454,7 +454,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -472,7 +472,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
 			<BitSize>4</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -481,7 +481,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
 			<BitSize>7</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -490,7 +490,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-00200000000C}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..11] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-00200000000C}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..11] OF BIT</Name>
 			<BitSize>12</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -502,7 +502,7 @@
 	<ImageDatas>
 		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e000000010018000000000000000000c30e0000c30e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000000080808000000080808000000080808000000000000000000000000000000000ff0000ff0000000000000000ff0000000000ff0000000000ff0000000000ff0000000000000000000000000000000000ff0000ff0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000000080808000000080808000000080808000000000000000000000000000000000ff0000ff0000000000000000ff0000000000ff0000000000ff0000000000ff0000000000000000000000000000000000ff0000ff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007fff007fff007fff007fff007fff007fffff00ffff00ffff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ff007fff007fff007fff007fff007fff007fffff00ff000000000000000000000000000000000000000000ff00ffff00ff007fff007fff007fff007fff007fff007fffff00ff000000000000000000000000000000000000000000007fffff00ff007fff007fff007fff007fff007fff007fffff00ff000000000000000000000000000000000000000000ff00ffff00ff007fff007fff007fff007fff007fff007fffff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ff007fff007fff007fff007fff007fff007fffff00ff000000000000000000000000ff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{6D9FB40F-FFBD-4006-B694-4F4CBA928927}" TargetNetId="5.29.104.104.1.1" Target64Bit="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{6D9FB40F-FFBD-4006-B694-4F4CBA928927}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Licenses>
 				<Target>
@@ -518,7 +518,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{CB2C5526-241B-444F-8640-B0289FA40761}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{9B8826D7-F661-30FB-DE99-0BFF25BCA2AB}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{5A08D65A-6366-A510-BC41-598A6EE96AFE}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -563,20 +563,20 @@
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="5" DevType="111" DevFlags="#x0003" AmsPort="28677" AmsNetId="5.29.104.104.6.1" RemoteName="Device 5 (EtherCAT)" InfoImageId="5">
-				<Name>Device 5 (EtherCAT)</Name>
+			<Device Id="4" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="5.29.110.110.5.1" RemoteName="Device 4 (EtherCAT)" InfoImageId="5">
+				<Name>Device 4 (EtherCAT)</Name>
 				<AddressInfo>
 					<Pnp>
 						<DeviceDesc>X001 (TwinCAT-Intel PCI Ethernet Adapter (Gigabit) </DeviceDesc>
-						<DeviceName>\DEVICE\{535963D7-9054-445F-B0C2-A5DBC96CC1FA}</DeviceName>
-						<DeviceData>0001051d7bc8</DeviceData>
+						<DeviceName>\DEVICE\{B1762BAF-61F9-4AA3-940F-9812B2209628}</DeviceName>
+						<DeviceData>0001052afc54</DeviceData>
 					</Pnp>
 				</AddressInfo>
 				<Image Id="4" AddrType="9" ImageType="3">
 					<Name>Image</Name>
 				</Image>
-				<Box Id="5" BoxType="9099" BoxFlags="#x00000020">
-					<Name>Box 5 (EP7402-0057)</Name>
+				<Box Id="1" BoxType="9099" BoxFlags="#x00000020">
+					<Name>Box 1 (EP7402-0057)</Name>
 					<ImageId>1000</ImageId>
 					<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1cea4052" RevisionNo="#x00150039" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="273" CreateDeviceDataType="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EP7402-0057 2 Ch. BLDC Motor, 24VDC, 8x digital In/Output, B23 ENP 5G4, 1x EtherCAT junction" Desc="EP7402-0057" PortABoxInfo="#x00ffffff">
 						<SyncMan>001000012600010001000000800000010001001026010000</SyncMan>
@@ -979,7 +979,7 @@
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500840000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500851000403}" Id="#x02030020"/>
 		<OwnerA Name="TIPC^PLC^PLC Instance">
-			<OwnerB Name="TIID^Device 5 (EtherCAT)^Box 5 (EP7402-0057)">
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Box 1 (EP7402-0057)">
 				<Link VarA="PlcTask Inputs^MAIN.nEP7402Addr" VarB="InfoData^AdsAddr^port"/>
 				<Link VarA="PlcTask Inputs^MAIN.sNetId" VarB="InfoData^AdsAddr^netId"/>
 				<Link VarA="PlcTask Inputs^MAIN.stEP7402_PDOs.MDP5001_100_200_705_Input^MDP5001_100_200_705_STM_Inputs_Device_Device_Diag" VarB="STM Inputs Device^Device Diag"/>
