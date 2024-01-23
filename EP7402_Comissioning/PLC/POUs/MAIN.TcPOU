@@ -45,6 +45,13 @@ fbResetCoE_Parameter(	sNetID:=F_CreateAmsNetId(sNetId),
 						bExecute := fbResetCoE_Parameter.bExecute
 						);
 
+	IF fbEP7402_AutoRequestSteps.bEnable THEN
+		IF bMotorChannel_1_Selected THEN
+			stEP7402_PDOs.MDP5001_100_200_705_Output.MDP5001_705_STM_Target_Velocity_Channel_1_Velocity:=0;
+		ELSE	
+			stEP7402_PDOs.MDP5001_100_200_705_Output.MDP5001_705_STM_Target_Velocity_Channel_2_Velocity:=0;
+		END_IF
+	END_IF						
 // special configuration functions requested via CoE (can be triggered from HMI)
 	//Request single Motor Steps
 	fbEP7402_AutoRequestSteps(bEnable:=fbEP7402_AutoRequestSteps.bEnable, bMotorChannel_1:=bMotorChannel_1_Selected,sNetID:=F_CreateAmsNetId(sNetId),nSlaveAddr:=nEP7402Addr);
@@ -118,6 +125,9 @@ stLast_EP7402_CoE_Parameter:=st_EP7402_CoE_Parameter;]]></ST>
       <LineId Id="2698" Count="0" />
       <LineId Id="2691" Count="6" />
       <LineId Id="2689" Count="0" />
+      <LineId Id="2779" Count="4" />
+      <LineId Id="2786" Count="0" />
+      <LineId Id="2785" Count="0" />
       <LineId Id="2687" Count="0" />
       <LineId Id="2305" Count="0" />
       <LineId Id="2688" Count="0" />
