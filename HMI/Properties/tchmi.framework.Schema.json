@@ -3033,6 +3033,9 @@
                     "type": "string"
                   },
                   {
+                    "$ref": "tchmi:framework#/definitions/TcHmi.Controls.System.TcHmiRegion"
+                  },
+                  {
                     "type": "null"
                   }
                 ]
@@ -3264,6 +3267,9 @@
                 "oneOf": [
                   {
                     "type": "string"
+                  },
+                  {
+                    "$ref": "tchmi:framework#/definitions/TcHmi.Controls.System.TcHmiRegion"
                   },
                   {
                     "type": "null"
@@ -4010,6 +4016,9 @@
                 "oneOf": [
                   {
                     "type": "string"
+                  },
+                  {
+                    "$ref": "tchmi:framework#/definitions/TcHmi.Controls.System.TcHmiRegion"
                   },
                   {
                     "type": "null"
